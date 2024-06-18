@@ -1,7 +1,8 @@
-"use client";
+// "use client";
 
 import { useState, useEffect } from 'react';
 import { PhoneIcon } from '@heroicons/react/24/outline'
+import { Resend } from 'resend';
 
 import { Button } from '@/components/Button';
 import { ActionIcon } from '@/images/icons';
@@ -18,42 +19,85 @@ interface FormField {
 }
 
 export default function Catering() {
-    const [firstName, setFirstName] = useState<string>("");
-    const [lastName, setLastName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [phoneNumber, setPhoneNumber] = useState<string>("");
-    const [partySize, setPartySize] = useState<string>("");
-    const [desiredDate, setDesiredDate] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
-    const [isFormValid, setIsFormValid] = useState<boolean>(false);
+    // const [firstName, setFirstName] = useState<string>("");
+    // const [lastName, setLastName] = useState<string>("");
+    // const [email, setEmail] = useState<string>("");
+    // const [phoneNumber, setPhoneNumber] = useState<string>("");
+    // const [partySize, setPartySize] = useState<string>("");
+    // const [desiredDate, setDesiredDate] = useState<string>("");
+    // const [message, setMessage] = useState<string>("");
+    // const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
-    const handleCateringRequest = async () => {
+    const handleCateringRequest = async (formData: FormData) => {
+        "use server";
+
+        const resend = new Resend(process.env.RESEND_KEY);
+
+        const { 
+            firstName,
+            lastName,
+            email,
+            phone,
+            partySize,
+            date,
+            message
+         } = Object.fromEntries(formData);
+
+          // Basic validation
+        if (
+            !firstName ||
+            !email ||
+            !phone ||
+            !partySize ||
+            !date
+        ) {
+            alert("Please enter all required fields");
+            return; // Stop execution if any field is missing
+        }
+
+        // Email validation using a simple regex pattern
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email as string)) {
+            alert("Error: Invalid email format.");
+            return; // Stop execution if the email format is invalid
+        }
+
+        // Name validation (example: ensure name is at least 2 characters long)
+        if ((firstName as string).length < 2) {
+            alert("Error: Name must be at least 2 characters long.");
+            return; // Stop execution if the name doesn't meet the criteria
+        }
+
+        // send confirmation email to signee
+
+        // send notification email to la playa
+
         console.log("request initiated");
     };
 
-    useEffect(() => {
-        setIsFormValid(
-            firstName.length > 0 &&
-            email.length > 0 &&
-            phoneNumber.length > 0 &&
-            partySize.length > 0 &&
-            desiredDate.length > 0
-        );
-    }, [firstName, email, phoneNumber, partySize, desiredDate]);
+    // useEffect(() => {
+    //     setIsFormValid(
+    //         firstName.length > 0 &&
+    //         email.length > 0 &&
+    //         phoneNumber.length > 0 &&
+    //         partySize.length > 0 &&
+    //         desiredDate.length > 0
+    //     );
+    // }, [firstName, email, phoneNumber, partySize, desiredDate]);
 
-    const inputs: FormField[] = [
+    const inputs = [
         {
             label: "First Name",
-            id: "first-name",
+            id: "firstName",
             placeholder: "John",
-            onChange: event => setFirstName(event.target.value)
+            // onChange: event => setFirstName(event.target.value)
         },
         {
             label: "Last Name",
-            id: "last-name",
+            id: "lastName",
             placeholder: "Doe",
             isOptional: true,
-            onChange: event => setLastName(event.target.value)
+            // onChange: event => setLastName(event.target.value)
         },
         {
             label: "Email",
@@ -61,27 +105,27 @@ export default function Catering() {
             placeholder: "john@example.com",
             autoComplete: "email",
             isFullWidth: true,
-            onChange: event => setEmail(event.target.value)
+            // onChange: event => setEmail(event.target.value)
         },
         {
             label: "Phone Number",
-            id: "phone-number",
+            id: "phone",
             placeholder: "(123) 456-7890",
             autoComplete: "tel",
             isFullWidth: true,
-            onChange: event => setPhoneNumber(event.target.value)
+            // onChange: event => setPhoneNumber(event.target.value)
         },
         {
             label: "Party Size",
-            id: "party-size",
+            id: "partySize",
             placeholder: "10",
-            onChange: event => setPartySize(event.target.value)
+            // onChange: event => setPartySize(event.target.value)
         },
         {
             label: "Desired Date",
-            id: "desired-date",
+            id: "date",
             placeholder: "10/3/2024",
-            onChange: event => setDesiredDate(event.target.value)
+            // onChange: event => setDesiredDate(event.target.value)
         },
         {
             label: "Message",
@@ -90,7 +134,7 @@ export default function Catering() {
             isOptional: true,
             isTextArea: true,
             isFullWidth: true,
-            onChange: event => setMessage(event.target.value)
+            // onChange: event => setMessage(event.target.value)
         }
     ];
 
@@ -164,7 +208,7 @@ export default function Catering() {
                                                         placeholder={input.placeholder}
                                                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
                                                         defaultValue={""}
-                                                        onChange={input.onChange}
+                                                        // onChange={input.onChange}
                                                     />
                                                     :
                                                     <input
@@ -173,7 +217,8 @@ export default function Catering() {
                                                         id={input.id}
                                                         placeholder={input.placeholder}
                                                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                                                        onChange={input.onChange}
+                                                        // onChange={input.onChange}
+                                                        required={!input.isOptional}
                                                     />
                                             }
                                         </div>
@@ -185,7 +230,7 @@ export default function Catering() {
                                     type="submit"
                                     variant="solid"
                                     color="cyan"
-                                    disabled={!isFormValid}
+                                    // disabled={!isFormValid}
                                 >
                                     <span className="mr-1.5">Submit Request</span>
                                     <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />

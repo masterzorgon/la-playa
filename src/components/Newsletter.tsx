@@ -15,9 +15,6 @@ export async function Newsletter() {
     const fetchContactListLength = async () => {
         "use server";
 
-        const RESEND_KEY = "re_QezkroZU_KY9ukYL53CtHA1GqEvQeg7eo" as string;
-        const RESEND_AUDIENCE = "b6bf1183-0ff3-4e7b-8754-dc9303c4d249" as string;
-
         const resend = new Resend(process.env.RESEND_KEY);
 
         // retrieve length of contacts and notify to la playa
@@ -31,16 +28,13 @@ export async function Newsletter() {
     const signUp = async (formData: FormData) => {
         "use server";
 
-        const RESEND_KEY = "re_QezkroZU_KY9ukYL53CtHA1GqEvQeg7eo" as string;
-        const RESEND_AUDIENCE = "b6bf1183-0ff3-4e7b-8754-dc9303c4d249" as string;
-
         const resend = new Resend(process.env.RESEND_KEY);
 
         const { email, name } = Object.fromEntries(formData);
 
         // Basic validation
         if (!email || !name) {
-            console.error("Error: All fields are required.");
+            alert("Please enter all required fields");
             return; // Stop execution if any field is missing
         }
 
@@ -112,7 +106,6 @@ export async function Newsletter() {
                         </p>
 
                         <form action={signUp} method="POST" className="mt-2 text-white">
-
                             <div>
                                 <label htmlFor="name" className="block text-sm font-semibold leading-6 text-start">
                                     Name
