@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import '@/styles/tailwind.css'
 import { type Metadata } from 'next'
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({
