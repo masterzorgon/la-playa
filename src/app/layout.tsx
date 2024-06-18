@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     default: 'La Playa Mexican Restuarant.',
   },
   description:
-    'At La Playa, we pride ourselves in cooking with love. Join us and enjoy homemade meals made according to Mexican tradition',
+    'At La Playa, we pride ourselves in cooking with love. Dine with us and enjoy meals made according to Mexican tradition.',
 }
 
 export default function RootLayout({
