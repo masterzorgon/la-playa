@@ -1,63 +1,59 @@
-import Image from 'next/image';
 import { FaceSmileIcon, ClockIcon, PhoneIcon } from '@heroicons/react/20/solid'
 
-import bgImage from '@/images/hours-bg.jpg'
+const cards = [
+    {
+        name: 'Contact Information',
+        icon: PhoneIcon,
+        details: [
+            {
+                key: "Phone",
+                value: "(956) 421-2000"
+            },
+            {
+                key: "Address",
+                value: "502 S 77 Sunshine Strip, Harlingen, TX"
+            },
+        ]
+    },
+    {
+        name: 'Happy Hour',
+        icon: FaceSmileIcon,
+        details: [
+            {
+                key: "Monday - Friday",
+                value: "3PM - 7PM"
+            },
+            {
+                key: "Saturday",
+                value: "11AM - 5PM"
+            },
+            {
+                key: "Sunday",
+                value: "All Day"
+            },
+        ],
+    },
+    {
+        name: 'Hours of Operation',
+        icon: ClockIcon,
+        details: [
+            {
+                key: "Sunday & Monday",
+                value: "11AM - 9PM"
+            },
+            {
+                key: "Tuesday - Thursday",
+                value: "11AM - 10PM"
+            },
+            {
+                key: "Friday & Saturday",
+                value: "11AM - 11PM"
+            },
+        ],
+    },
+]
 
 export default function Hours() {
-
-    const cards = [
-        {
-            name: 'Contact Information',
-            icon: PhoneIcon,
-            details: [
-                {
-                    key: "Phone",
-                    value: "(956) 421-2000"
-                },
-                {
-                    key: "Address",
-                    value: "502 S 77 Sunshine Strip, Harlingen, TX"
-                },
-            ]
-        },
-        {
-            name: 'Happy Hour',
-            icon: FaceSmileIcon,
-            details: [
-                {
-                    key: "Monday - Friday",
-                    value: "3PM - 7PM"
-                },
-                {
-                    key: "Saturday",
-                    value: "11AM - 5PM"
-                },
-                {
-                    key: "Sunday",
-                    value: "All Day"
-                },
-            ],
-        },
-        {
-            name: 'Hours of Operation',
-            icon: ClockIcon,
-            details: [
-                {
-                    key: "Sunday & Monday",
-                    value: "11AM - 9PM"
-                },
-                {
-                    key: "Tuesday - Thursday",
-                    value: "11AM - 10PM"
-                },
-                {
-                    key: "Friday & Saturday",
-                    value: "11AM - 11PM"
-                },
-            ],
-        },
-    ]
-
     return (
         <>
             <div className='oveflow-hidden'>
