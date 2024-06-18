@@ -1,98 +1,149 @@
-"use client";
-
-import { useState, useEffect } from 'react';
+import { Resend } from 'resend';
 import { PhoneIcon } from '@heroicons/react/24/outline'
+import { toast } from 'react-toastify';
 
 import { Button } from '@/components/Button';
 import { ActionIcon } from '@/images/icons';
+
+import ConfirmationCateringRequest from '../../../emails/catering/ConfirmationCateringRequest';
+import NotificationCateringRequest from '../../../emails/catering/NotificationCateringRequest';
 
 interface FormField {
     label: string;
     id: string;
     placeholder: string;
     autoComplete?: string;
-    isOptional?: boolean;
     isFullWidth?: boolean;
     isTextArea?: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
+    required: boolean;
 }
 
+const inputs: FormField[] = [
+    {
+        label: "First Name",
+        id: "firstName",
+        placeholder: "John",
+        required: true,
+    },
+    {
+        label: "Last Name",
+        id: "lastName",
+        placeholder: "Doe",
+        required: true,
+    },
+    {
+        label: "Email",
+        id: "email",
+        placeholder: "john@example.com",
+        autoComplete: "email",
+        isFullWidth: true,
+        required: true,
+    },
+    {
+        label: "Phone Number",
+        id: "phone",
+        placeholder: "(123) 456-7890",
+        autoComplete: "tel",
+        isFullWidth: true,
+        required: true,
+    },
+    {
+        label: "Party Size",
+        id: "partySize",
+        placeholder: "10",
+        required: true,
+    },
+    {
+        label: "Desired Date",
+        id: "date",
+        placeholder: "10/3/2024",
+        required: true,
+    },
+    {
+        label: "Message",
+        id: "message",
+        placeholder: "Have a special request? Leave us a message.",
+        isTextArea: true,
+        isFullWidth: true,
+        required: false,
+    }
+];
+
 export default function Catering() {
-    const [firstName, setFirstName] = useState<string>("");
-    const [lastName, setLastName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [phoneNumber, setPhoneNumber] = useState<string>("");
-    const [partySize, setPartySize] = useState<string>("");
-    const [desiredDate, setDesiredDate] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
-    const [isFormValid, setIsFormValid] = useState<boolean>(false);
+    const handleCateringRequest = async (formData: FormData) => {
+        "use server";
 
-    const handleCateringRequest = async () => {
-        console.log("request initiated");
-    };
+        const resend = new Resend(process.env.RESEND_KEY);
 
-    useEffect(() => {
-        setIsFormValid(
-            firstName.length > 0 &&
-            email.length > 0 &&
-            phoneNumber.length > 0 &&
-            partySize.length > 0 &&
-            desiredDate.length > 0
-        );
-    }, [firstName, email, phoneNumber, partySize, desiredDate]);
+        const { 
+            firstName,
+            lastName,
+            email,
+            phone,
+            partySize,
+            date,
+            message
+         } = Object.fromEntries(formData);
 
-    const inputs: FormField[] = [
-        {
-            label: "First Name",
-            id: "first-name",
-            placeholder: "John",
-            onChange: event => setFirstName(event.target.value)
-        },
-        {
-            label: "Last Name",
-            id: "last-name",
-            placeholder: "Doe",
-            isOptional: true,
-            onChange: event => setLastName(event.target.value)
-        },
-        {
-            label: "Email",
-            id: "email",
-            placeholder: "john@example.com",
-            autoComplete: "email",
-            isFullWidth: true,
-            onChange: event => setEmail(event.target.value)
-        },
-        {
-            label: "Phone Number",
-            id: "phone-number",
-            placeholder: "(123) 456-7890",
-            autoComplete: "tel",
-            isFullWidth: true,
-            onChange: event => setPhoneNumber(event.target.value)
-        },
-        {
-            label: "Party Size",
-            id: "party-size",
-            placeholder: "10",
-            onChange: event => setPartySize(event.target.value)
-        },
-        {
-            label: "Desired Date",
-            id: "desired-date",
-            placeholder: "10/3/2024",
-            onChange: event => setDesiredDate(event.target.value)
-        },
-        {
-            label: "Message",
-            id: "message",
-            placeholder: "Have a special request? Leave us a message.",
-            isOptional: true,
-            isTextArea: true,
-            isFullWidth: true,
-            onChange: event => setMessage(event.target.value)
+          // Basic validation
+        if (
+            !firstName ||
+            !email ||
+            !phone ||
+            !partySize ||
+            !date
+        ) {
+            alert("Please enter all required fields");
+            return; // Stop execution if any field is missing
         }
-    ];
+
+        // Email validation using a simple regex pattern
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email as string)) {
+            alert("Error: Invalid email format.");
+            return; // Stop execution if the email format is invalid
+        }
+
+        // Name validation (example: ensure name is at least 2 characters long)
+        if ((firstName as string).length < 2) {
+            alert("Error: Name must be at least 2 characters long.");
+            return; // Stop execution if the name doesn't meet the criteria
+        }
+
+        try {
+            // send confirmation email to signee
+        await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: [email as string],
+            subject: "La Playa Catering Request Confirmation",
+            react: <ConfirmationCateringRequest />,
+            headers: {
+                'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
+            }
+        });
+
+        // send notification email to la playa
+        await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: "Laplayamain@gmail.com",
+            subject: "New Catering Request!",
+            react: <NotificationCateringRequest 
+                firstName={firstName as string}
+                lastName={lastName as string}
+                email={email as string}
+                phoneNumber={phone as string}
+                partySize={partySize as string}
+                date={date as string}
+                message={message && message as string}
+            />
+        });
+
+            toast.success("Your submission has been sent!");
+        } catch (error) {
+            console.log("error", error);
+            toast.error("An error occured. Try again later.");
+        }
+    };
 
     return (
         <>
@@ -147,9 +198,9 @@ export default function Catering() {
                                                 {input.label}
                                             </label>
                                             {
-                                                input.isOptional &&
+                                                input.required &&
                                                 <span className="text-sm leading-6 text-gray-500" id="message-optional">
-                                                    Optional
+                                                    Required
                                                 </span>
                                             }
                                         </div>
@@ -164,7 +215,7 @@ export default function Catering() {
                                                         placeholder={input.placeholder}
                                                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
                                                         defaultValue={""}
-                                                        onChange={input.onChange}
+                                                        required={input.required}
                                                     />
                                                     :
                                                     <input
@@ -173,7 +224,7 @@ export default function Catering() {
                                                         id={input.id}
                                                         placeholder={input.placeholder}
                                                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                                                        onChange={input.onChange}
+                                                        required={input.required}
                                                     />
                                             }
                                         </div>
@@ -185,7 +236,6 @@ export default function Catering() {
                                     type="submit"
                                     variant="solid"
                                     color="cyan"
-                                    disabled={!isFormValid}
                                 >
                                     <span className="mr-1.5">Submit Request</span>
                                     <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />

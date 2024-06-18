@@ -28,16 +28,16 @@ export function WeeklyFeature() {
                             Deep fried corn tortilla chips topped with refried beans, yellow american cheese, chopped beef, chicken or mixed fajitas, chili con queso, pico de gallo, guacamole, sour cream, and pickled jalapenos
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
-                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
-                                <span className="mr-1.5">Order Now</span>
-                                <OrderIcon className="h-6 w-6 flex-none" />
-                            </Button>
                             <Button
                                 href="/menu"
                                 variant="outline"
                             >
                                 <span className="mr-1.5">View Menu</span>
-                                <ActionIcon className="h-6 w-6 flex-none fill-white" />
+                                <OrderIcon className="h-6 w-6 flex-none" />
+                            </Button>
+                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
+                                <span className="mr-1.5">Order Now</span>
+                                <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
                             </Button>
                         </div>
                     </div>
