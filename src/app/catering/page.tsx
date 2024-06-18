@@ -115,6 +115,7 @@ export default function Catering() {
         await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
             to: [email as string],
+            cc: "elizabeth@laplayamexicancafe.com",
             subject: "La Playa Catering Request Confirmation",
             react: <ConfirmationCateringRequest />,
             headers: {
