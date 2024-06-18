@@ -1,33 +1,23 @@
-// "use client";
-
-import { useState, useEffect } from 'react';
-import { PhoneIcon } from '@heroicons/react/24/outline'
 import { Resend } from 'resend';
+import { PhoneIcon } from '@heroicons/react/24/outline'
 
 import { Button } from '@/components/Button';
 import { ActionIcon } from '@/images/icons';
+
+import ConfirmationCateringRequest from '../../../emails/catering/ConfirmationCateringRequest';
+import NotificationCateringRequest from '../../../emails/catering/NotificationCateringRequest';
 
 interface FormField {
     label: string;
     id: string;
     placeholder: string;
     autoComplete?: string;
-    isOptional?: boolean;
     isFullWidth?: boolean;
     isTextArea?: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void;
+    required: boolean;
 }
 
 export default function Catering() {
-    // const [firstName, setFirstName] = useState<string>("");
-    // const [lastName, setLastName] = useState<string>("");
-    // const [email, setEmail] = useState<string>("");
-    // const [phoneNumber, setPhoneNumber] = useState<string>("");
-    // const [partySize, setPartySize] = useState<string>("");
-    // const [desiredDate, setDesiredDate] = useState<string>("");
-    // const [message, setMessage] = useState<string>("");
-    // const [isFormValid, setIsFormValid] = useState<boolean>(false);
-
     const handleCateringRequest = async (formData: FormData) => {
         "use server";
 
@@ -69,35 +59,45 @@ export default function Catering() {
         }
 
         // send confirmation email to signee
+        await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: [email as string],
+            subject: "La Playa Catering Request Confirmation",
+            react: <ConfirmationCateringRequest />,
+            headers: {
+                'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
+            }
+        });
 
         // send notification email to la playa
-
-        console.log("request initiated");
+        await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: "Laplayamain@gmail.com",
+            subject: "New Catering Request!",
+            react: <NotificationCateringRequest 
+                firstName={firstName as string}
+                lastName={lastName as string}
+                email={email as string}
+                phoneNumber={phone as string}
+                partySize={partySize as string}
+                date={date as string}
+                message={message && message as string}
+            />
+        });
     };
 
-    // useEffect(() => {
-    //     setIsFormValid(
-    //         firstName.length > 0 &&
-    //         email.length > 0 &&
-    //         phoneNumber.length > 0 &&
-    //         partySize.length > 0 &&
-    //         desiredDate.length > 0
-    //     );
-    // }, [firstName, email, phoneNumber, partySize, desiredDate]);
-
-    const inputs = [
+    const inputs: FormField[] = [
         {
             label: "First Name",
             id: "firstName",
             placeholder: "John",
-            // onChange: event => setFirstName(event.target.value)
+            required: true,
         },
         {
             label: "Last Name",
             id: "lastName",
             placeholder: "Doe",
-            isOptional: true,
-            // onChange: event => setLastName(event.target.value)
+            required: true,
         },
         {
             label: "Email",
@@ -105,7 +105,7 @@ export default function Catering() {
             placeholder: "john@example.com",
             autoComplete: "email",
             isFullWidth: true,
-            // onChange: event => setEmail(event.target.value)
+            required: true,
         },
         {
             label: "Phone Number",
@@ -113,28 +113,27 @@ export default function Catering() {
             placeholder: "(123) 456-7890",
             autoComplete: "tel",
             isFullWidth: true,
-            // onChange: event => setPhoneNumber(event.target.value)
+            required: true,
         },
         {
             label: "Party Size",
             id: "partySize",
             placeholder: "10",
-            // onChange: event => setPartySize(event.target.value)
+            required: true,
         },
         {
             label: "Desired Date",
             id: "date",
             placeholder: "10/3/2024",
-            // onChange: event => setDesiredDate(event.target.value)
+            required: true,
         },
         {
             label: "Message",
             id: "message",
             placeholder: "Have a special request? Leave us a message.",
-            isOptional: true,
             isTextArea: true,
             isFullWidth: true,
-            // onChange: event => setMessage(event.target.value)
+            required: false,
         }
     ];
 
@@ -191,9 +190,9 @@ export default function Catering() {
                                                 {input.label}
                                             </label>
                                             {
-                                                input.isOptional &&
+                                                input.required &&
                                                 <span className="text-sm leading-6 text-gray-500" id="message-optional">
-                                                    Optional
+                                                    Required
                                                 </span>
                                             }
                                         </div>
@@ -208,7 +207,7 @@ export default function Catering() {
                                                         placeholder={input.placeholder}
                                                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
                                                         defaultValue={""}
-                                                        // onChange={input.onChange}
+                                                        required={input.required}
                                                     />
                                                     :
                                                     <input
@@ -217,8 +216,7 @@ export default function Catering() {
                                                         id={input.id}
                                                         placeholder={input.placeholder}
                                                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
-                                                        // onChange={input.onChange}
-                                                        required={!input.isOptional}
+                                                        required={input.required}
                                                     />
                                             }
                                         </div>
@@ -230,7 +228,6 @@ export default function Catering() {
                                     type="submit"
                                     variant="solid"
                                     color="cyan"
-                                    // disabled={!isFormValid}
                                 >
                                     <span className="mr-1.5">Submit Request</span>
                                     <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
