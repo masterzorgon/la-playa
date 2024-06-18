@@ -44,8 +44,7 @@ export default function AboutUs() {
                                     We take pride in our Mexican heritage and want to share this rich history
                                     with you through warm meals and wonderful service.{" "}
                                     <span className="font-semibold">
-                                        When you walk into La Playa Mexican Cafe, you&apos;re being greeted
-                                        like family.
+                                        When you walk into La Playa Mexican Cafe, you will be greeted like family.
                                     </span>
                                 </p>
                             </div>

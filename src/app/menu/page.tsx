@@ -55,6 +55,8 @@ interface Menu {
     [category: string]: MenuItem[];
 };
 
+const URL_PREFIX = "https://drive.google.com/thumbnail?id="
+
 const menu: Menu = {
     "Appetizers": [
         {
@@ -1635,7 +1637,7 @@ export default function Menu() {
                                             src={
                                                 (menuItem.image.alt.includes("Beer") || menuItem.image.alt.includes("Wine"))
                                                     ? menuItem.image.src
-                                                    : `https://drive.google.com/thumbnail?id=${menuItem.image.src}`
+                                                    : `${URL_PREFIX}${menuItem.image.src}`
                                             } 
                                             alt={menuItem.image.alt} 
                                             className="h-full w-full object-cover object-center" 
