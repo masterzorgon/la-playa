@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { PhoneIcon } from '@heroicons/react/24/outline'
+import { toast } from 'react-toastify';
 
 import { Button } from '@/components/Button';
 import { ActionIcon } from '@/images/icons';
@@ -16,6 +17,57 @@ interface FormField {
     isTextArea?: boolean;
     required: boolean;
 }
+
+const inputs: FormField[] = [
+    {
+        label: "First Name",
+        id: "firstName",
+        placeholder: "John",
+        required: true,
+    },
+    {
+        label: "Last Name",
+        id: "lastName",
+        placeholder: "Doe",
+        required: true,
+    },
+    {
+        label: "Email",
+        id: "email",
+        placeholder: "john@example.com",
+        autoComplete: "email",
+        isFullWidth: true,
+        required: true,
+    },
+    {
+        label: "Phone Number",
+        id: "phone",
+        placeholder: "(123) 456-7890",
+        autoComplete: "tel",
+        isFullWidth: true,
+        required: true,
+    },
+    {
+        label: "Party Size",
+        id: "partySize",
+        placeholder: "10",
+        required: true,
+    },
+    {
+        label: "Desired Date",
+        id: "date",
+        placeholder: "10/3/2024",
+        required: true,
+    },
+    {
+        label: "Message",
+        id: "message",
+        placeholder: "Have a special request? Leave us a message.",
+        isTextArea: true,
+        isFullWidth: true,
+        required: false,
+    }
+];
 
 export default function Catering() {
     const handleCateringRequest = async (formData: FormData) => {
@@ -58,7 +110,8 @@ export default function Catering() {
             return; // Stop execution if the name doesn't meet the criteria
         }
 
-        // send confirmation email to signee
+        try {
+            // send confirmation email to signee
         await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
             to: [email as string],
@@ -84,58 +137,13 @@ export default function Catering() {
                 message={message && message as string}
             />
         });
-    };
 
-    const inputs: FormField[] = [
-        {
-            label: "First Name",
-            id: "firstName",
-            placeholder: "John",
-            required: true,
-        },
-        {
-            label: "Last Name",
-            id: "lastName",
-            placeholder: "Doe",
-            required: true,
-        },
-        {
-            label: "Email",
-            id: "email",
-            placeholder: "john@example.com",
-            autoComplete: "email",
-            isFullWidth: true,
-            required: true,
-        },
-        {
-            label: "Phone Number",
-            id: "phone",
-            placeholder: "(123) 456-7890",
-            autoComplete: "tel",
-            isFullWidth: true,
-            required: true,
-        },
-        {
-            label: "Party Size",
-            id: "partySize",
-            placeholder: "10",
-            required: true,
-        },
-        {
-            label: "Desired Date",
-            id: "date",
-            placeholder: "10/3/2024",
-            required: true,
-        },
-        {
-            label: "Message",
-            id: "message",
-            placeholder: "Have a special request? Leave us a message.",
-            isTextArea: true,
-            isFullWidth: true,
-            required: false,
+            toast.success("Your submission has been sent!");
+        } catch (error) {
+            console.log("error", error);
+            toast.error("An error occured. Try again later.");
         }
-    ];
+    };
 
     return (
         <>

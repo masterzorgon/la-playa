@@ -63,19 +63,18 @@ export function Hero() {
                             Mexican tradition.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
-                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
-                                <span className="mr-1.5">Order Now</span>
-                                <OrderIcon className="h-6 w-6 flex-none" />
-                            </Button>
                             <Button
                                 href="/menu"
                                 variant="solid"
                                 color="white"
                             >
                                 <span className="mr-1.5">View Menu</span>
-                                <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+                                <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
-
+                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
+                                <span className="mr-1.5">Order Now</span>
+                                <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
+                            </Button>
                         </div>
                     </div>
 

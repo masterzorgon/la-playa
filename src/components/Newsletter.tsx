@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { toast } from 'react-toastify';
 
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
@@ -72,8 +73,11 @@ export async function Newsletter() {
                 subject: "New Newsletter Signup!",
                 react: <NotificationNewsLetterSignup numOfContacts={numOfContacts} signee={email as string} />
             });
+
+            toast.success("Your submission has been sent!")
         } catch (error) {
             console.error("Error signing up:", error);
+            toast.error("An error occured. Try again later.")
         }
     };
 
