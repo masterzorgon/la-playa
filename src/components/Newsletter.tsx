@@ -81,10 +81,6 @@ export async function Newsletter() {
     //     }
     // };
 
-    const clearForm = () => {
-
-    }
-
     return (
         <>
             <section
