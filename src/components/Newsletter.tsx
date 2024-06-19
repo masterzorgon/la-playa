@@ -1,5 +1,4 @@
 import { Resend } from 'resend';
-import { toast } from 'react-toastify';
 
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
