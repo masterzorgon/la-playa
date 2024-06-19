@@ -100,9 +100,9 @@ export async function Newsletter() {
                             Stay in touch with the latest news on our promotions and menu changes.
                         </p>
 
-                        <form 
+                        <div 
                             // action={signUp} 
-                            method="POST" 
+                            // method="POST" 
                             className="mt-2 text-white"
                         >
                             <div className='mt-4'>
@@ -130,7 +130,7 @@ export async function Newsletter() {
                                     <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
                                 </Button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </Container>
             </section>
