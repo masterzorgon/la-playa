@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     template: '%s - La Playa',
-    default: 'La Playa Mexican Restuarant',
+    default: 'La Playa Mexican Cafe',
   },
   description:
     'At La Playa, we pride ourselves in cooking with love. Dine with us and enjoy meals made according to Mexican tradition.',
