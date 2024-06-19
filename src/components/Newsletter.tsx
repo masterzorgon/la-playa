@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { track } from '@vercel/analytics';
 
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
@@ -27,6 +28,8 @@ export async function Newsletter() {
 
     const signUp = async (formData: FormData) => {
         "use server";
+
+        track("Newsletter signup");
 
         const resend = new Resend(process.env.RESEND_KEY);
 

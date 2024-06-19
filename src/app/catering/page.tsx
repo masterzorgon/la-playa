@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { track } from '@vercel/analytics';
 import { PhoneIcon } from '@heroicons/react/24/outline'
 
 import { Button } from '@/components/Button';
@@ -71,6 +72,8 @@ const inputs: FormField[] = [
 export default function Catering() {
     const handleCateringRequest = async (formData: FormData) => {
         "use server";
+
+        track("Catering request");
 
         const resend = new Resend(process.env.RESEND_KEY);
 
