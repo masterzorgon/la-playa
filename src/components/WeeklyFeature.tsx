@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import foodItem from "@/images/Tacos Cutting Board Juice.jpg"
+import weeklyDish from "@/images/weekly-dish.jpg"
 
 import {
     ActionIcon,
@@ -14,18 +15,23 @@ export function WeeklyFeature() {
         <div className="relative isolate z-10 bg-cyan-800 py-32">
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
-                    <img
+                    {/* <img
                         className="h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm"
                         src="https://drive.google.com/thumbnail?id=1hN_UXxZVZucmbAst7cq9hyGKVlSo6ZKJ"
+                        alt=""
+                    /> */}
+                    <Image 
+                        src={weeklyDish}
+                        className="h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm"
                         alt=""
                     />
                     <div className="h-96 w-full flex-auto">
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                             <span>Weekly Featured Dish</span>
                         </h2>
-                        <p className='mt-10 text-white text-2xl font-semibold'>Los Panchos</p>
+                        <p className='mt-10 text-white text-2xl font-semibold'>Fajitas Alambre</p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Deep fried corn tortilla chips topped with refried beans, yellow american cheese, chopped beef, chicken or mixed fajitas, chili con queso, pico de gallo, guacamole, sour cream, and pickled jalapenos
+                        Our mouthwatering Fajitas packed with bell peppers, onions, and Monterrey cheese. This dish is served with rice and charro beans.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button

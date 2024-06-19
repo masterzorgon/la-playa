@@ -81,6 +81,10 @@ export async function Newsletter() {
     //     }
     // };
 
+    const clearForm = () => {
+
+    }
+
     return (
         <>
             <section
@@ -103,6 +107,7 @@ export async function Newsletter() {
                         <div 
                             // action={signUp} 
                             // method="POST" 
+                            id="form"
                             className="mt-2 text-white"
                         >
                             <div className='mt-4'>
