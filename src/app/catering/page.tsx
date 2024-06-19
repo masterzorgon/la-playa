@@ -141,11 +141,8 @@ export default function Catering() {
                 message={message && message as string}
             />
         });
-
-            toast.success("Your submission has been sent!");
         } catch (error) {
             console.log("error", error);
-            toast.error("An error occured. Try again later.");
         }
     };
 
