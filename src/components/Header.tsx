@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Popover } from '@headlessui/react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { track } from '@vercel/analytics';
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -123,7 +124,14 @@ export function Header() {
                               <span className="mr-1.5 text-white">View Menu</span>
                               <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
                             </Button>
-                            <Button variant="solid" color="white" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
+                            <Button 
+                              variant="solid" 
+                              color="white" 
+                              href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              onClick={() => track("Order now action")}
+                            >
                               <span className="mr-1.5">Order Now</span>
                               <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
@@ -138,7 +146,15 @@ export function Header() {
             <Button href="/menu" variant="outline" className="hidden lg:block border-black">
               <span className="text-white">View Menu</span>
             </Button>
-            <Button variant="solid" color="white" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer" className="hidden lg:block">
+            <Button 
+              variant="solid" 
+              color="white" 
+              href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hidden lg:block"
+              onClick={() => track("Order now action")}
+            >
               <span>Order Now</span>
             </Button>
           </div>

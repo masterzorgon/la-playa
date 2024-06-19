@@ -29,7 +29,7 @@ export async function Newsletter() {
     const signUp = async (formData: FormData) => {
         "use server";
 
-        track("Newsletter signup");
+        track("Newsletter signup action");
 
         const resend = new Resend(process.env.RESEND_KEY);
 

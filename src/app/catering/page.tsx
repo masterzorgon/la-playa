@@ -73,7 +73,7 @@ export default function Catering() {
     const handleCateringRequest = async (formData: FormData) => {
         "use server";
 
-        track("Catering request");
+        track("Catering request action");
 
         const resend = new Resend(process.env.RESEND_KEY);
 
