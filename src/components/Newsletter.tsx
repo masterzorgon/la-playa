@@ -12,74 +12,74 @@ import {
 } from '@/images/icons'
 
 export async function Newsletter() {
-    const fetchContactListLength = async () => {
-        "use server";
+    // const fetchContactListLength = async () => {
+    //     "use server";
 
-        const resend = new Resend(process.env.RESEND_KEY);
+    //     const resend = new Resend(process.env.RESEND_KEY);
 
-        // retrieve length of contacts and notify to la playa
-        const { data } = await resend.contacts.list({
-            audienceId: process.env.RESEND_AUDIENCE as string,
-        });
+    //     // retrieve length of contacts and notify to la playa
+    //     const { data } = await resend.contacts.list({
+    //         audienceId: process.env.RESEND_AUDIENCE as string,
+    //     });
 
-        return data!.data.length as number;
-    };
+    //     return data!.data.length as number;
+    // };
 
-    const signUp = async (formData: FormData) => {
-        "use server";
+    // const signUp = async (formData: FormData) => {
+    //     "use server";
 
-        const resend = new Resend(process.env.RESEND_KEY);
+    //     const resend = new Resend(process.env.RESEND_KEY);
 
-        const { email } = Object.fromEntries(formData);
+    //     const { email } = Object.fromEntries(formData);
 
-        // Basic validation
-        if (!email) {
-            alert("Please enter your email");
-            return; // Stop execution if any field is missing
-        }
+    //     // Basic validation
+    //     if (!email) {
+    //         alert("Please enter your email");
+    //         return; // Stop execution if any field is missing
+    //     }
 
-        // Email validation using a simple regex pattern
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email as string)) {
-            console.error("Error: Invalid email format.");
-            return; // Stop execution if the email format is invalid
-        }
+    //     // Email validation using a simple regex pattern
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     if (!emailRegex.test(email as string)) {
+    //         console.error("Error: Invalid email format.");
+    //         return; // Stop execution if the email format is invalid
+    //     }
 
-        try {
-            // add signee to the audience
-            const { data: audienceConfirmation } = await resend.contacts.create({
-                email: email as string,
-                unsubscribed: false,
-                audienceId: process.env.RESEND_AUDIENCE as string
-            });
+    //     try {
+    //         // add signee to the audience
+    //         const { data: audienceConfirmation } = await resend.contacts.create({
+    //             email: email as string,
+    //             unsubscribed: false,
+    //             audienceId: process.env.RESEND_AUDIENCE as string
+    //         });
 
-            // send confirmation email to signee
-            await resend.emails.send({
-                from: "Acme <onboarding@resend.dev>",
-                to: [email as string],
-                subject: "Welcome to the La Playa Newsletter!",
-                react: <ConfirmationNewsLetterSignup />,
-                headers: {
-                    'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
-                }
-            });
+    //         // send confirmation email to signee
+    //         await resend.emails.send({
+    //             from: "Acme <onboarding@resend.dev>",
+    //             to: [email as string],
+    //             subject: "Welcome to the La Playa Newsletter!",
+    //             react: <ConfirmationNewsLetterSignup />,
+    //             headers: {
+    //                 'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
+    //             }
+    //         });
 
-            // calc length of contact list and notify la playa of new signup
-            const numOfContacts = await fetchContactListLength();
-            await resend.emails.send({
-                from: "Acme <onboarding@resend.dev>",
-                to: "Laplayamain@gmail.com",
-                cc: [
-                    "elizabeth@laplayamexicancafe.com",
-                    "laplaya@laplayamexicancafe.com"
-                ],
-                subject: "New Newsletter Signup!",
-                react: <NotificationNewsLetterSignup numOfContacts={numOfContacts} signee={email as string} />
-            });
-        } catch (error) {
-            console.error("Error signing up:", error);
-        }
-    };
+    //         // calc length of contact list and notify la playa of new signup
+    //         const numOfContacts = await fetchContactListLength();
+    //         await resend.emails.send({
+    //             from: "Acme <onboarding@resend.dev>",
+    //             to: "Laplayamain@gmail.com",
+    //             cc: [
+    //                 "elizabeth@laplayamexicancafe.com",
+    //                 "laplaya@laplayamexicancafe.com"
+    //             ],
+    //             subject: "New Newsletter Signup!",
+    //             react: <NotificationNewsLetterSignup numOfContacts={numOfContacts} signee={email as string} />
+    //         });
+    //     } catch (error) {
+    //         console.error("Error signing up:", error);
+    //     }
+    // };
 
     return (
         <>
@@ -100,7 +100,11 @@ export async function Newsletter() {
                             Stay in touch with the latest news on our promotions and menu changes.
                         </p>
 
-                        <form action={signUp} method="POST" className="mt-2 text-white">
+                        <form 
+                            // action={signUp} 
+                            method="POST" 
+                            className="mt-2 text-white"
+                        >
                             <div className='mt-4'>
                                 <label htmlFor="email" className="block text-sm font-semibold leading-6 text-start">
                                     Email

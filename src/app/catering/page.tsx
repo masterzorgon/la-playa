@@ -69,81 +69,81 @@ const inputs: FormField[] = [
 ];
 
 export default function Catering() {
-    const handleCateringRequest = async (formData: FormData) => {
-        "use server";
+    // const handleCateringRequest = async (formData: FormData) => {
+    //     "use server";
 
-        const resend = new Resend(process.env.RESEND_KEY);
+    //     const resend = new Resend(process.env.RESEND_KEY);
 
-        const { 
-            firstName,
-            lastName,
-            email,
-            phone,
-            partySize,
-            date,
-            message
-         } = Object.fromEntries(formData);
+    //     const { 
+    //         firstName,
+    //         lastName,
+    //         email,
+    //         phone,
+    //         partySize,
+    //         date,
+    //         message
+    //      } = Object.fromEntries(formData);
 
-          // Basic validation
-        if (
-            !firstName ||
-            !email ||
-            !phone ||
-            !partySize ||
-            !date
-        ) {
-            alert("Please enter all required fields");
-            return; // Stop execution if any field is missing
-        }
+    //       // Basic validation
+    //     if (
+    //         !firstName ||
+    //         !email ||
+    //         !phone ||
+    //         !partySize ||
+    //         !date
+    //     ) {
+    //         alert("Please enter all required fields");
+    //         return; // Stop execution if any field is missing
+    //     }
 
-        // Email validation using a simple regex pattern
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email as string)) {
-            alert("Error: Invalid email format.");
-            return; // Stop execution if the email format is invalid
-        }
+    //     // Email validation using a simple regex pattern
+    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //     if (!emailRegex.test(email as string)) {
+    //         alert("Error: Invalid email format.");
+    //         return; // Stop execution if the email format is invalid
+    //     }
 
-        // Name validation (example: ensure name is at least 2 characters long)
-        if ((firstName as string).length < 2) {
-            alert("Error: Name must be at least 2 characters long.");
-            return; // Stop execution if the name doesn't meet the criteria
-        }
+    //     // Name validation (example: ensure name is at least 2 characters long)
+    //     if ((firstName as string).length < 2) {
+    //         alert("Error: Name must be at least 2 characters long.");
+    //         return; // Stop execution if the name doesn't meet the criteria
+    //     }
 
-        try {
-            // send confirmation email to signee
-        await resend.emails.send({
-            from: "Acme <onboarding@resend.dev>",
-            to: [email as string],
-            subject: "La Playa Catering Request Confirmation",
-            react: <ConfirmationCateringRequest />,
-            headers: {
-                'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
-            }
-        });
+    //     try {
+    //         // send confirmation email to signee
+    //     await resend.emails.send({
+    //         from: "Acme <onboarding@resend.dev>",
+    //         to: [email as string],
+    //         subject: "La Playa Catering Request Confirmation",
+    //         react: <ConfirmationCateringRequest />,
+    //         headers: {
+    //             'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
+    //         }
+    //     });
 
-        // send notification email to la playa
-        await resend.emails.send({
-            from: "Acme <onboarding@resend.dev>",
-            to: "Laplayamain@gmail.com",
-            cc: [
-                "elizabeth@laplayamexicancafe.com",
-                "laplaya@laplayamexicancafe.com"
-            ],
-            subject: "New Catering Request!",
-            react: <NotificationCateringRequest 
-                firstName={firstName as string}
-                lastName={lastName as string}
-                email={email as string}
-                phoneNumber={phone as string}
-                partySize={partySize as string}
-                date={date as string}
-                message={message && message as string}
-            />
-        });
-        } catch (error) {
-            console.log("error", error);
-        }
-    };
+    //     // send notification email to la playa
+    //     await resend.emails.send({
+    //         from: "Acme <onboarding@resend.dev>",
+    //         to: "Laplayamain@gmail.com",
+    //         cc: [
+    //             "elizabeth@laplayamexicancafe.com",
+    //             "laplaya@laplayamexicancafe.com"
+    //         ],
+    //         subject: "New Catering Request!",
+    //         react: <NotificationCateringRequest 
+    //             firstName={firstName as string}
+    //             lastName={lastName as string}
+    //             email={email as string}
+    //             phoneNumber={phone as string}
+    //             partySize={partySize as string}
+    //             date={date as string}
+    //             message={message && message as string}
+    //         />
+    //     });
+    //     } catch (error) {
+    //         console.log("error", error);
+    //     }
+    // };
 
     return (
         <>
@@ -188,7 +188,11 @@ export default function Catering() {
                         </div>
                     </div>
 
-                    <form action={handleCateringRequest} method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
+                    <form 
+                        // action={handleCateringRequest} 
+                        method="POST" 
+                        className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48"
+                    >
                         <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                                 {inputs.map(input => (
