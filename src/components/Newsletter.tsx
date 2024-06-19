@@ -70,7 +70,10 @@ export async function Newsletter() {
             await resend.emails.send({
                 from: "Acme <onboarding@resend.dev>",
                 to: "Laplayamain@gmail.com",
-                cc: "elizabeth@laplayamexicancafe.com",
+                cc: [
+                    "elizabeth@laplayamexicancafe.com",
+                    "laplaya@laplayamexicancafe.com"
+                ],
                 subject: "New Newsletter Signup!",
                 react: <NotificationNewsLetterSignup numOfContacts={numOfContacts} signee={email as string} />
             });
