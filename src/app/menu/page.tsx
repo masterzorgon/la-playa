@@ -1520,7 +1520,7 @@ export default function Menu() {
                             Explore our delicious and original recipes prepared with love just for you!<br/> <span className='font-semibold inline-flex items-center'>Starred menu items are specialty dishes <StarIcon className='text-cyan-600 ml-1 w-4' /></span>
                         </p>
                         <div>
-                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer" onClick={() => track("Order now action")}>
+                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
                                 <span className="mr-1.5">Order Now</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>

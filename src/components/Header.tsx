@@ -130,7 +130,6 @@ export function Header() {
                               href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              onClick={() => track("Order now action")}
                             >
                               <span className="mr-1.5">Order Now</span>
                               <OrderIcon className="h-6 w-6 flex-none" />
@@ -153,7 +152,6 @@ export function Header() {
               target="_blank" 
               rel="noopener noreferrer" 
               className="hidden lg:block"
-              onClick={() => track("Order now action")}
             >
               <span>Order Now</span>
             </Button>
