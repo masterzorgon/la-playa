@@ -20,7 +20,7 @@ export function Newsletter() {
         const emailInput = form.email as HTMLInputElement;
         const email = emailInput.value;
         
-        const url = "/api/newsletter";
+        const url = "https://www.laplayamexicancafe.com/api/newsletter";
 
         try {
             const response = await fetch(url, {
@@ -33,9 +33,6 @@ export function Newsletter() {
             
             const result = await response.json();
 
-            // Clear the input field after submission
-            emailInput.value = '';
-
             toast.success("Successfully signed up!");
             return result;
         } catch (error) {
@@ -46,6 +43,7 @@ export function Newsletter() {
             return { error: "Unknown error" };
         } finally {
             setIsSending(false);
+            emailInput.value = '';
         }
     };
 
