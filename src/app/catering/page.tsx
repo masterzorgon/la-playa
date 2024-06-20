@@ -128,7 +128,8 @@ export default function Catering() {
                 toast.success("Form submitted successfully!");
                 form.reset(); // Clear the form after submission
             } else {
-                // toast.error("Error submitting request: " + result.error);
+                toast.error("Error submitting request");
+                console.log("Error", result.error);
             }
         } catch (error) {
             console.error("Request failed:", error);
