@@ -20,7 +20,7 @@ export function Newsletter() {
         const emailInput = form.email as HTMLInputElement;
         const email = emailInput.value;
         
-        const url = "https://www.laplayamexicancafe.com/api/newsletter";
+        const url = "/api/newsletter";
 
         try {
             const response = await fetch(url, {
