@@ -1,11 +1,11 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
-import { Button } from '@/components/Button'
+import { Button } from '@/components/Button';
 
-import teamPhoto from "@/images/team.png"
-import mxFood1 from "@/images/mx-food-1.jpg"
-import mxFood2 from "@/images/mx-food-2.jpg"
-import mxFood3 from "@/images/mx-food-3.jpg"
+import teamPhoto from "@/images/team.png";
+import foodShowcase1 from '@/images/food-showcase1.jpg';
+import foodShowcase2 from '@/images/food-showcase2.jpg';
+import foodShowcase3 from '@/images/food-showcase3.jpg';
 
 import {
     ActionIcon,
@@ -46,7 +46,7 @@ export function OurStory() {
                         <div className="hidden md:block flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
                             <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
                                 <Image
-                                    src={mxFood3}
+                                    src={foodShowcase1}
                                     alt=""
                                     className="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover"
                                 />
@@ -54,7 +54,7 @@ export function OurStory() {
                             <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
                                 <div className="order-first flex w-64 flex-none justify-end self-end lg:w-auto">
                                     <Image
-                                        src={mxFood2}
+                                        src={foodShowcase2}
                                         alt=""
                                         className="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover"
                                     />
@@ -68,7 +68,7 @@ export function OurStory() {
                                 </div>
                                 <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
                                     <Image
-                                        src={mxFood1}
+                                        src={foodShowcase3}
                                         alt=""
                                         className="aspect-[4/3] w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover"
                                     />

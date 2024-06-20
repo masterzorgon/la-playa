@@ -5,9 +5,8 @@ import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu as HeadlessMenu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, StarIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx';
-import { track } from '@vercel/analytics';
 
-import headerPhoto from '@/images/menu-banner.jpg'
+import foodShowcase4 from '@/images/food-showcase4.jpg';
 import { Button } from '@/components/Button';
 import { OrderIcon } from '@/images/icons';
 
@@ -1504,7 +1503,7 @@ export default function Menu() {
             <div className="bg-white">
                 <div aria-hidden="true" className="relative">
                     <Image
-                        src={headerPhoto}
+                        src={foodShowcase4}
                         alt=""
                         className="h-96 w-full object-cover object-center"
                     />

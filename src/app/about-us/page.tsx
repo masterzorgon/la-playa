@@ -2,11 +2,11 @@ import Image from "next/image";
 
 import { SectionBreak } from "@/components/SectionBreak";
 
-import mx1 from '@/images/mx-v1.jpg';
-import mx2 from '@/images/mx-v2.jpg';
-import mx3 from '@/images/mx-v3.jpg';
-import mx4 from '@/images/mx-v4.jpg';
-import mx5 from '@/images/mx-v5.jpg';
+import foodShowcase_1 from '@/images/mx-v2.jpg';
+import foodShowcase_2 from '@/images/mx-v1.jpg';
+import foodShowcase5 from '@/images/food-showcase5.jpg';
+import foodShowcase6 from '@/images/food-showcase6.jpg';
+import foodShowcase7 from '@/images/food-showcase7.jpg';
 
 export default function AboutUs() {
 
@@ -52,7 +52,7 @@ export default function AboutUs() {
                                 <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-none xl:pt-80">
                                     <div className="relative">
                                         <Image
-                                            src={mx2}
+                                            src={foodShowcase5}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -62,7 +62,7 @@ export default function AboutUs() {
                                 <div className="mr-auto w-44 flex-none space-y-8 sm:mr-0 sm:pt-52 lg:pt-36">
                                     <div className="relative">
                                         <Image
-                                            src={mx3}
+                                            src={foodShowcase6}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -70,7 +70,7 @@ export default function AboutUs() {
                                     </div>
                                     <div className="relative">
                                         <Image
-                                            src={mx4}
+                                            src={foodShowcase7}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -80,7 +80,7 @@ export default function AboutUs() {
                                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                                     <div className="relative">
                                         <Image
-                                            src={mx5}
+                                            src={foodShowcase_1}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -88,7 +88,7 @@ export default function AboutUs() {
                                     </div>
                                     <div className="relative">
                                         <Image
-                                            src={mx1}
+                                            src={foodShowcase_2}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
