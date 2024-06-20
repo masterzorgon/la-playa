@@ -32,6 +32,7 @@ export function Newsletter() {
             });
             
             const result = await response.json();
+            console.log("RESULT", result);
             
             toast.success("Successfully signed up!");
             return result;
