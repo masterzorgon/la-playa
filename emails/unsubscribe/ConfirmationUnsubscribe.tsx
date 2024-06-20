@@ -49,7 +49,7 @@ const ConfirmationUnsubscribe = () => {
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               If you were not expecting this invitation, you can ignore this email. If
               you are concerned about your account's safety, please reply to
-              this email to get in touch with us at main@laplayamexicancafe.com.
+              this email to get in touch with us at laplaya@laplayamexicancafe.com.
             </Text>
           </Container>
         </Body>

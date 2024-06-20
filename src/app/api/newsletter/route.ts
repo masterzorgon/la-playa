@@ -38,8 +38,8 @@ export async function POST(request: NextRequest) {
       // notify la playa of new signup
       const { data: notifyData } = await resend.emails.send({
          from: "laplaya@laplayamexicancafe.com",
-         to: "Laplayamain@gmail.com",
-         cc: "elizabeth@laplayamexicancafe.com",
+         to: "elizabeth@laplayamexicancafe.com",
+         cc: "Laplayamain@gmail.com",
          subject: "New Newsletter Signup!",
          react: NotificationNewsLetterSignup({ numOfContacts, email })
       });
