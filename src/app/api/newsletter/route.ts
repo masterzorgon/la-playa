@@ -10,12 +10,6 @@ export async function POST(request: NextRequest) {
    const resend = new Resend("re_QezkroZU_KY9ukYL53CtHA1GqEvQeg7eo");
    const audience = "b6bf1183-0ff3-4e7b-8754-dc9303c4d249"!;
 
-   // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-   // if (!emailRegex.test(email)) {
-   //    console.error("Error: Invalid email format.");
-   //    return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
-   // }
-
    try {
       // add signee to the audience
       await resend.contacts.create({

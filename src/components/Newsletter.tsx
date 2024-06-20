@@ -3,23 +3,34 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { CircleBackground } from '@/components/CircleBackground'
-import { Container } from '@/components/Container'
-import { Button } from '@/components/Button'
-import { ActionIcon } from '@/images/icons'
+import { CircleBackground } from '@/components/CircleBackground';
+import { Container } from '@/components/Container';
+import { Button } from '@/components/Button';
+import { ActionIcon } from '@/images/icons';
 
 export function Newsletter() {
     const [isSending, setIsSending] = useState<boolean>(false);
+
+    const validateEmail = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
 
     const handleNewsletterSignup = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         setIsSending(true);
-        
+
         const form = event.target as HTMLFormElement;
         const emailInput = form.email as HTMLInputElement;
         const email = emailInput.value;
-        
+
+        if (!validateEmail(email)) {
+            toast.error("Invalid email format");
+            setIsSending(false);
+            return;
+        }
+
         const url = "/api/newsletter";
 
         try {
@@ -30,18 +41,18 @@ export function Newsletter() {
                 },
                 body: JSON.stringify({ email }),
             });
-            
+
             const result = await response.json();
             console.log("RESULT", result);
-            
-            toast.success("Successfully signed up!");
-            return result;
+
+            if (response.ok) {
+                toast.success("Successfully signed up!");
+            } else {
+                toast.error(result.error || "An error occurred. Try again later.");
+            }
         } catch (error) {
             console.error("Request failed:", error);
             toast.error("An error occurred. Try again later.");
-            if (error instanceof Error) 
-                return { error: error.message };
-            return { error: "Unknown error" };
         } finally {
             setIsSending(false);
             emailInput.value = '';
@@ -95,17 +106,16 @@ export function Newsletter() {
                                     type="submit"
                                     disabled={isSending}
                                 >
-
                                     {
-                                            isSending
-                                                ? "Sending..."
-                                                : (
-                                                    <>
-                                                        <span className="mr-1.5">Subscribe</span>
-                                                        <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
-                                                    </>
-                                                )
-                                        }
+                                        isSending
+                                            ? "Sending..."
+                                            : (
+                                                <>
+                                                    <span className="mr-1.5">Subscribe</span>
+                                                    <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+                                                </>
+                                            )
+                                    }
                                 </Button>
                             </div>
                         </form>
