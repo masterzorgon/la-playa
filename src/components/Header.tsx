@@ -147,7 +147,7 @@ export function Header() {
             <Button 
               variant="solid" 
               color="white" 
-              href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" 
+              href="https://www.doordash.com/store/la-playa-mexican-cafe-harlingen-607767/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hidden lg:block"
