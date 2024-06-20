@@ -36,8 +36,8 @@ export default function RootLayout({
         <div className="flex min-h-full flex-col">{children}</div>
       </body>
       <ToastContainer 
+        autoClose={5000}
         closeOnClick
-        autoClose={6}
       />
     </html>
   )
