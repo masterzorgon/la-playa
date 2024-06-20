@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import { PhoneIcon } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
 
@@ -68,6 +69,8 @@ const inputs: FormField[] = [
 ];
 
 export default function Catering() {
+    const [isSending, setIsSending] = useState<boolean>(false);
+
     const validateForm = (data: { [key: string]: string }) => {
         if (
             !data.firstName ||
@@ -99,6 +102,8 @@ export default function Catering() {
 
     const handleCateringRequest = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        setIsSending(true);
         
         const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
@@ -128,6 +133,8 @@ export default function Catering() {
         } catch (error) {
             console.error("Request failed:", error);
             toast.error("An error occurred. Try again later.");
+        } finally {
+            setIsSending(false);
         }
     };
 
@@ -221,9 +228,18 @@ export default function Catering() {
                                         type="submit"
                                         variant="solid"
                                         color="cyan"
+                                        disabled={isSending}
                                     >
-                                        <span className="mr-1.5">Submit Request</span>
-                                        <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
+                                        {
+                                            isSending
+                                                ? "Sending..."
+                                                : (
+                                                    <>
+                                                        <span className="mr-1.5">Submit Request</span>
+                                                        <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
+                                                    </>
+                                                )
+                                        }
                                     </Button>
                                 </div>
                             </form>

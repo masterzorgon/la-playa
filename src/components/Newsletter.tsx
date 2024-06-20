@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { CircleBackground } from '@/components/CircleBackground'
@@ -8,9 +9,12 @@ import { Button } from '@/components/Button'
 import { ActionIcon } from '@/images/icons'
 
 export function Newsletter() {
+    const [isSending, setIsSending] = useState<boolean>(false);
 
     const handleNewsletterSignup = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        setIsSending(true);
         
         const form = event.target as HTMLFormElement;
         const emailInput = form.email as HTMLInputElement;
@@ -40,6 +44,8 @@ export function Newsletter() {
             if (error instanceof Error) 
                 return { error: error.message };
             return { error: "Unknown error" };
+        } finally {
+            setIsSending(false);
         }
     };
 
@@ -88,9 +94,19 @@ export function Newsletter() {
                                     variant="solid"
                                     color="white"
                                     type="submit"
+                                    disabled={isSending}
                                 >
-                                    <span className="mr-1.5">Subscribe</span>
-                                    <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+
+                                    {
+                                            isSending
+                                                ? "Sending..."
+                                                : (
+                                                    <>
+                                                        <span className="mr-1.5">Subscribe</span>
+                                                        <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+                                                    </>
+                                                )
+                                        }
                                 </Button>
                             </div>
                         </form>
