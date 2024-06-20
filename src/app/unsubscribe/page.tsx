@@ -1,4 +1,7 @@
-import { Resend } from 'resend';
+"use client";
+
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
@@ -8,43 +11,52 @@ import {
     ActionIcon,
 } from '@/images/icons'
 
-import ConfirmationUnsubscribe from '../../../emails/unsubscribe/ConfirmationUnsubscribe';
-
-
-
 export default async function Unsubscribe() {
-    const unsubscribe = async (formData: FormData) => {
-        "use server";
+    const [isSending, setIsSending] = useState<boolean>(false);
 
-        const resend = new Resend(process.env.RESEND_KEY);
-
-        const { email } = Object.fromEntries(formData);
-
-        // Email validation using a simple regex pattern
+    const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email as string)) {
-            console.error("Error: Invalid email format.");
-            return; // Stop execution if the email format is invalid
+        return emailRegex.test(email);
+    };
+
+    const handleUnsubscribe = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const form = event.target as HTMLFormElement;
+        const emailInput = form.email as HTMLInputElement;
+        const email = emailInput.value;
+
+        if (!validateEmail(email)) {
+            toast.error("Invalid email format");
+            setIsSending(false);
+            return;
         }
 
+        const url = "/api/unsubscribe";
+
         try {
-            // remove user from audience
-            const { data: audienceConfirmation } = await resend.contacts.remove({
-                email: email as string,
-                audienceId: process.env.RESEND_AUDIENCE as string
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
             });
 
-            // send confirmation email to user
-            await resend.emails.send({
-                from: "Acme <onboarding@resend.dev>",
-                to: [email as string],
-                subject: "You Are Removed From The La Playa Newsletter!",
-                react: <ConfirmationUnsubscribe /* ADD PARAMS */ />,
-            });
+            const result = await response.json();
+            console.log("RESULT", result);
 
-            console.log("Signup successful", audienceConfirmation);
+            if (response.ok) {
+                toast.success("Successfully unsubscribed!");
+            } else {
+                toast.error(result.error || "An error occurred. Try again later.");
+            }
         } catch (error) {
-            console.error("Error signing up:", error);
+            console.error("Request failed:", error);
+            toast.error("An error occurred. Try again later.");
+        } finally {
+            setIsSending(false);
+            emailInput.value = '';
         }
     };
 
@@ -63,10 +75,10 @@ export default async function Unsubscribe() {
                             Unsubscribe From Our Newsletter
                         </h2>
                         <p className="mt-4 text-lg text-gray-300">
-                            By clicking &quot;Unsubscribe&quot;, you are choosing to remove yourself from the La Playa Mexican Cafe newsletter. 
+                            By clicking &quot;Unsubscribe&quot;, you are choosing to remove yourself from the La Playa Mexican Cafe newsletter.
                         </p>
 
-                        <form action={unsubscribe} method="POST" className="mt-2 text-white">
+                        <form onSubmit={handleUnsubscribe} method="POST" className="mt-2 text-white">
                             <div className='mt-4'>
                                 <label htmlFor="email" className="block text-sm font-semibold leading-6 text-start">
                                     Email
@@ -88,9 +100,18 @@ export default async function Unsubscribe() {
                                     variant="solid"
                                     color="white"
                                     type="submit"
+                                    disabled={isSending}
                                 >
-                                    <span className="mr-1.5">Unsubscribe</span>
-                                    <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+                                    {
+                                        isSending
+                                            ? "Sending..."
+                                            : (
+                                                <>
+                                                    <span className="mr-1.5">Unsubscribe</span>
+                                                    <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+                                                </>
+                                            )
+                                    }
                                 </Button>
                             </div>
                         </form>

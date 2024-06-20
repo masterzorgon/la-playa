@@ -1,7 +1,6 @@
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
-import foodItem from "@/images/Tacos Cutting Board Juice.jpg"
 import weeklyDish from "@/images/weekly-dish.jpg"
 
 import {

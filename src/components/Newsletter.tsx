@@ -62,7 +62,7 @@ export function Newsletter() {
     return (
         <>
             <section
-                id="get-free-shares-today"
+                id="newsletter"
                 className="relative overflow-hidden bg-cyan-800 py-44"
             >
                 <div className="flex justify-center absolute mx-auto w-screen scale-[140%] sm:scale-100 top-10 sm:top-14">

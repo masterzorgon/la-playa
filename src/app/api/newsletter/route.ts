@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       });
 
       // send confirmation email to signee
-      const data = await resend.emails.send({
+      const { data: confirmData } = await resend.emails.send({
          from: "laplaya@laplayamexicancafe.com",
          to: email,
          subject: "Welcome to the La Playa Newsletter!",
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       const numOfContacts = contactList!.data.length;
       
       // notify la playa of new signup
-      await resend.emails.send({
+      const { data: notifyData } = await resend.emails.send({
          from: "laplaya@laplayamexicancafe.com",
          to: "Laplayamain@gmail.com",
          cc: "elizabeth@laplayamexicancafe.com",
@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
          react: NotificationNewsLetterSignup({ numOfContacts, email })
       });
 
+      const data = { confirmData, notifyData };
       return NextResponse.json({ data });
    } catch (error) {
       console.error(error);
