@@ -7,8 +7,8 @@ import NotificationNewsLetterSignup from "../../../../emails/newsletter/Notifica
 export async function POST(request: NextRequest) {
    const { email } = await request.json();
 
-   const resend = new Resend("re_QezkroZU_KY9ukYL53CtHA1GqEvQeg7eo");
-   const audience = "b6bf1183-0ff3-4e7b-8754-dc9303c4d249"!;
+   const resend = new Resend(process.env.RESEND_KEY);
+   const audience = process.env.RESEND_AUDIENCE!;
 
    try {
       // add signee to the audience

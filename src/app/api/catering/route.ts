@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
         message
     } = await request.json();
 
-    const resend = new Resend("re_QezkroZU_KY9ukYL53CtHA1GqEvQeg7eo");
+    const resend = new Resend(process.env.RESEND_KEY);
 
     try {
         // send confirmation email to signee
