@@ -4,6 +4,9 @@ import clsx from 'clsx'
 import '@/styles/tailwind.css'
 import { type Metadata } from 'next'
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
@@ -32,6 +35,7 @@ export default function RootLayout({
       <body className="flex h-full flex-col">
         <div className="flex min-h-full flex-col">{children}</div>
       </body>
+      <ToastContainer />
     </html>
   )
 }

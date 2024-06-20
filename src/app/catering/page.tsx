@@ -1,11 +1,11 @@
-import { Resend } from 'resend';
-import { PhoneIcon } from '@heroicons/react/24/outline'
+"use client";
+
+import { useState } from 'react';
+import { PhoneIcon } from '@heroicons/react/24/outline';
+import { toast } from 'react-toastify';
 
 import { Button } from '@/components/Button';
 import { ActionIcon } from '@/images/icons';
-
-import ConfirmationCateringRequest from '../../../emails/catering/ConfirmationCateringRequest';
-import NotificationCateringRequest from '../../../emails/catering/NotificationCateringRequest';
 
 interface FormField {
     label: string;
@@ -40,7 +40,7 @@ const inputs: FormField[] = [
     },
     {
         label: "Phone Number",
-        id: "phone",
+        id: "phoneNumber",
         placeholder: "(123) 456-7890",
         autoComplete: "tel",
         isFullWidth: true,
@@ -69,81 +69,74 @@ const inputs: FormField[] = [
 ];
 
 export default function Catering() {
-    // const handleCateringRequest = async (formData: FormData) => {
-    //     "use server";
+    const [isSending, setIsSending] = useState<boolean>(false);
 
-    //     const resend = new Resend(process.env.RESEND_KEY);
+    const validateForm = (data: { [key: string]: string }) => {
+        if (
+            !data.firstName ||
+            !data.lastName ||
+            !data.email ||
+            !data.phoneNumber ||
+            !data.partySize ||
+            !data.date
+        ) {
+            alert("Please enter all required fields");
+            return false;
+        }
 
-    //     const { 
-    //         firstName,
-    //         lastName,
-    //         email,
-    //         phone,
-    //         partySize,
-    //         date,
-    //         message
-    //      } = Object.fromEntries(formData);
+        // Email validation using a simple regex pattern
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            alert("Error: Invalid email format.");
+            return false;
+        }
 
-    //       // Basic validation
-    //     if (
-    //         !firstName ||
-    //         !email ||
-    //         !phone ||
-    //         !partySize ||
-    //         !date
-    //     ) {
-    //         alert("Please enter all required fields");
-    //         return; // Stop execution if any field is missing
-    //     }
+        // Name validation (example: ensure name is at least 2 characters long)
+        if (data.firstName.length < 2 || data.lastName.length < 2) {
+            alert("Error: Name must be at least 2 characters long.");
+            return false;
+        }
 
-    //     // Email validation using a simple regex pattern
-    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    //     if (!emailRegex.test(email as string)) {
-    //         alert("Error: Invalid email format.");
-    //         return; // Stop execution if the email format is invalid
-    //     }
+        return true;
+    };
 
-    //     // Name validation (example: ensure name is at least 2 characters long)
-    //     if ((firstName as string).length < 2) {
-    //         alert("Error: Name must be at least 2 characters long.");
-    //         return; // Stop execution if the name doesn't meet the criteria
-    //     }
+    const handleCateringRequest = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
-    //     try {
-    //         // send confirmation email to signee
-    //     await resend.emails.send({
-    //         from: "Acme <onboarding@resend.dev>",
-    //         to: [email as string],
-    //         subject: "La Playa Catering Request Confirmation",
-    //         react: <ConfirmationCateringRequest />,
-    //         headers: {
-    //             'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
-    //         }
-    //     });
+        setIsSending(true);
+        
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries()) as { [key: string]: string };
+        
+        if (!validateForm(data)) {
+            return;
+        }
 
-    //     // send notification email to la playa
-    //     await resend.emails.send({
-    //         from: "Acme <onboarding@resend.dev>",
-    //         to: "Laplayamain@gmail.com",
-    //         cc: [
-    //             "elizabeth@laplayamexicancafe.com",
-    //             "laplaya@laplayamexicancafe.com"
-    //         ],
-    //         subject: "New Catering Request!",
-    //         react: <NotificationCateringRequest 
-    //             firstName={firstName as string}
-    //             lastName={lastName as string}
-    //             email={email as string}
-    //             phoneNumber={phone as string}
-    //             partySize={partySize as string}
-    //             date={date as string}
-    //             message={message && message as string}
-    //         />
-    //     });
-    //     } catch (error) {
-    //         console.log("error", error);
-    //     }
-    // };
+        try {
+            const response = await fetch('/api/catering', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                toast.success("Form submitted successfully!");
+                form.reset(); // Clear the form after submission
+            } else {
+                toast.error("Error submitting request: " + result.error);
+            }
+        } catch (error) {
+            console.error("Request failed:", error);
+            toast.error("An error occurred. Try again later.");
+        } finally {
+            setIsSending(false);
+        }
+    };
 
     return (
         <>
@@ -188,17 +181,13 @@ export default function Catering() {
                         </div>
                     </div>
 
-                    <div 
-                        // action={handleCateringRequest} 
-                        // method="POST" 
-                        className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48"
-                    >
+                    <div className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
                         <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
-                            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                            <form onSubmit={handleCateringRequest} className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                                 {inputs.map(input => (
                                     <div key={input.id} className={`${input.isFullWidth && "sm:col-span-2"}`}>
                                         <div className="flex justify-between">
-                                            <label htmlFor="message" className="block text-sm font-medium leading-6 text-gray-900">
+                                            <label htmlFor={input.id} className="block text-sm font-medium leading-6 text-gray-900">
                                                 {input.label}
                                             </label>
                                             {
@@ -234,21 +223,30 @@ export default function Catering() {
                                         </div>
                                     </div>
                                 ))}
-                            </div>
-                            <div className="mt-8 flex justify-end">
-                                <Button
-                                    type="submit"
-                                    variant="solid"
-                                    color="cyan"
-                                >
-                                    <span className="mr-1.5">Submit Request</span>
-                                    <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
-                                </Button>
-                            </div>
+                                <div className="mt-8 flex justify-end sm:col-span-2">
+                                    <Button
+                                        type="submit"
+                                        variant="solid"
+                                        color="cyan"
+                                        disabled={isSending}
+                                    >
+                                        {
+                                            isSending
+                                                ? "Sending..."
+                                                : (
+                                                    <>
+                                                        <span className="mr-1.5">Submit Request</span>
+                                                        <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
+                                                    </>
+                                                )
+                                        }
+                                    </Button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </>
     );
-};
+}

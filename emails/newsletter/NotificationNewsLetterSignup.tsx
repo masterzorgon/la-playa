@@ -13,12 +13,12 @@ import {
   
   interface CateringRequestProps {
     numOfContacts: number,
-    signee: string,
+    email: string,
   }
   
   const NotificationNewsLetterSignup = ({
     numOfContacts,
-    signee
+    email
   }: CateringRequestProps) => {
     const previewText = "New Signup For The La Playa Newsletter!";
   
@@ -39,8 +39,11 @@ import {
               <Heading className="text-black text-[24px] font-normal text-center p-0 my-[10px] mx-0">
                 New Signup For The La Playa Newsletter!
               </Heading>
-              <Text className="text-black text-[14px] leading-[24px] text-center">
-                The La Playa Newsletter now has {numOfContacts} signups! The new signee is {signee}.
+              <Text className="text-black text-[14px] leading-[24px] text-left">
+                The La Playa Newsletter now has {numOfContacts} signups!
+              </Text>
+              <Text className="text-black text-[14px] leading-[24px] text-left">
+                The new signee is {email}.
               </Text>
             </Container>
           </Body>

@@ -1,85 +1,53 @@
-import { Resend } from 'resend';
+"use client";
+
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { CircleBackground } from '@/components/CircleBackground'
 import { Container } from '@/components/Container'
 import { Button } from '@/components/Button'
+import { ActionIcon } from '@/images/icons'
 
-import ConfirmationNewsLetterSignup from '../../emails/newsletter/ConfirmationNewsLetterSignup';
-import NotificationNewsLetterSignup from '../../emails/newsletter/NotificationNewsLetterSignup';
+export function Newsletter() {
+    const [isSending, setIsSending] = useState<boolean>(false);
 
-import {
-    ActionIcon,
-} from '@/images/icons'
+    const handleNewsletterSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
-export async function Newsletter() {
-    // const fetchContactListLength = async () => {
-    //     "use server";
+        setIsSending(true);
+        
+        const form = event.target as HTMLFormElement;
+        const emailInput = form.email as HTMLInputElement;
+        const email = emailInput.value;
+        
+        const url = "/api/newsletter";
 
-    //     const resend = new Resend(process.env.RESEND_KEY);
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            
+            const result = await response.json();
 
-    //     // retrieve length of contacts and notify to la playa
-    //     const { data } = await resend.contacts.list({
-    //         audienceId: process.env.RESEND_AUDIENCE as string,
-    //     });
+            // Clear the input field after submission
+            emailInput.value = '';
 
-    //     return data!.data.length as number;
-    // };
-
-    // const signUp = async (formData: FormData) => {
-    //     "use server";
-
-    //     const resend = new Resend(process.env.RESEND_KEY);
-
-    //     const { email } = Object.fromEntries(formData);
-
-    //     // Basic validation
-    //     if (!email) {
-    //         alert("Please enter your email");
-    //         return; // Stop execution if any field is missing
-    //     }
-
-    //     // Email validation using a simple regex pattern
-    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    //     if (!emailRegex.test(email as string)) {
-    //         console.error("Error: Invalid email format.");
-    //         return; // Stop execution if the email format is invalid
-    //     }
-
-    //     try {
-    //         // add signee to the audience
-    //         const { data: audienceConfirmation } = await resend.contacts.create({
-    //             email: email as string,
-    //             unsubscribed: false,
-    //             audienceId: process.env.RESEND_AUDIENCE as string
-    //         });
-
-    //         // send confirmation email to signee
-    //         await resend.emails.send({
-    //             from: "Acme <onboarding@resend.dev>",
-    //             to: [email as string],
-    //             subject: "Welcome to the La Playa Newsletter!",
-    //             react: <ConfirmationNewsLetterSignup />,
-    //             headers: {
-    //                 'List-Unsubscribe': '<https://www.laplayamexicancafe.com/unsubscribe>'
-    //             }
-    //         });
-
-    //         // calc length of contact list and notify la playa of new signup
-    //         const numOfContacts = await fetchContactListLength();
-    //         await resend.emails.send({
-    //             from: "Acme <onboarding@resend.dev>",
-    //             to: "Laplayamain@gmail.com",
-    //             cc: [
-    //                 "elizabeth@laplayamexicancafe.com",
-    //                 "laplaya@laplayamexicancafe.com"
-    //             ],
-    //             subject: "New Newsletter Signup!",
-    //             react: <NotificationNewsLetterSignup numOfContacts={numOfContacts} signee={email as string} />
-    //         });
-    //     } catch (error) {
-    //         console.error("Error signing up:", error);
-    //     }
-    // };
+            toast.success("Successfully signed up!");
+            return result;
+        } catch (error) {
+            console.error("Request failed:", error);
+            toast.error("An error occurred. Try again later.");
+            if (error instanceof Error) 
+                return { error: error.message };
+            return { error: "Unknown error" };
+        } finally {
+            setIsSending(false);
+        }
+    };
 
     return (
         <>
@@ -100,9 +68,9 @@ export async function Newsletter() {
                             Stay in touch with the latest news on our promotions and menu changes.
                         </p>
 
-                        <div 
-                            // action={signUp} 
-                            // method="POST" 
+                        <form 
+                            onSubmit={handleNewsletterSignup} 
+                            method="POST" 
                             id="form"
                             className="mt-2 text-white"
                         >
@@ -112,7 +80,7 @@ export async function Newsletter() {
                                 </label>
                                 <div className="mt-2.5">
                                     <input
-                                        type="emal"
+                                        type="email"
                                         name="email"
                                         id="email"
                                         autoComplete="email"
@@ -126,25 +94,35 @@ export async function Newsletter() {
                                     variant="solid"
                                     color="white"
                                     type="submit"
+                                    disabled={isSending}
                                 >
-                                    <span className="mr-1.5">Subscribe</span>
-                                    <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+
+                                    {
+                                            isSending
+                                                ? "Sending..."
+                                                : (
+                                                    <>
+                                                        <span className="mr-1.5">Subscribe</span>
+                                                        <ActionIcon className="h-6 w-6 flex-none fill-black text-black" />
+                                                    </>
+                                                )
+                                        }
                                 </Button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </Container>
             </section>
 
             <div className='bg-cyan-800 w-full pb-16 pt-10'>
                 <p className='text-xs text-white/50 text-center max-w-xl mx-auto shadow-lg bg-gray-400/5 rounded-lg p-4'>
-                    By clicking &quot;Subscribe&quot;, you agree to recieve marketing messages from La Playa Mexican Cafe at the number or email provided, including messages sent by autodialer.
+                    By clicking &quot;Subscribe&quot;, you agree to receive marketing messages from La Playa Mexican Cafe at the number or email provided, including messages sent by autodialer.
                     Consent is not a condition of any purchase.
                     Message and data rates may apply.
                     Message frequency varies.
                     You can unsubscribe at any time by replying &quot;STOP&quot; via SMS or clicking the &quot;Unsubscribe&quot; link (where available) in one of our messages.
                     View our <a className="underline hover:cursor-pointer hover:text-white" href="/privacy-policy">Privacy Policy</a> and <a className="underline hover:cursor-pointer hover:text-white" href="terms-of-service" target="_blank" rel="noreferrer noopener">Terms of Service</a>.
-                    You can also unsibscribe from our email list <a className='underline hover:cursor-pointer hover:text-white' href="/unsubscribe">here</a>.
+                    You can also unsubscribe from our email list <a className='underline hover:cursor-pointer hover:text-white' href="/unsubscribe">here</a>.
                 </p>
             </div>
         </>
