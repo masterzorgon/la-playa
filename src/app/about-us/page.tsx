@@ -2,8 +2,8 @@ import Image from "next/image";
 
 import { SectionBreak } from "@/components/SectionBreak";
 
-import foodShowcase_1 from '@/images/mx-v2.jpg';
-import foodShowcase_2 from '@/images/mx-v1.jpg';
+import foodShowcase3 from '@/images/food-showcase3.jpg';
+import foodShowcase4 from '@/images/food-showcase4.jpg';
 import foodShowcase5 from '@/images/food-showcase5.jpg';
 import foodShowcase6 from '@/images/food-showcase6.jpg';
 import foodShowcase7 from '@/images/food-showcase7.jpg';
@@ -80,7 +80,7 @@ export default function AboutUs() {
                                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                                     <div className="relative">
                                         <Image
-                                            src={foodShowcase_1}
+                                            src={foodShowcase3}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
@@ -88,7 +88,7 @@ export default function AboutUs() {
                                     </div>
                                     <div className="relative">
                                         <Image
-                                            src={foodShowcase_2}
+                                            src={foodShowcase4}
                                             alt=""
                                             className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                                         />
