@@ -39,7 +39,7 @@ export function Footer() {
             </div>
             <div className="ml-8 lg:w-64">
               <p className="text-base font-semibold text-white">
-                <Link href="#">
+                <Link href="https://www.facebook.com/LaPlayaMexicanCafe/">
                   <span className="absolute inset-0 sm:rounded-2xl" />
                   Leave us a review on Facebook
                 </Link>
