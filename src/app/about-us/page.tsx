@@ -40,7 +40,7 @@ export default function AboutUs() {
                                     Our craft is our passion
                                 </h1>
                                 <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none">
-                                    La Playa Mexican Cafe was opened in July of 2006 in Harlingen Texas by the Trevino family. We enjoy bringing a bit of twist to the Harlingen community, differentiating from other Mexican restaurants with selecting ingredients to accent the traditional Mexican cuisine from interior Mexico for a flavorful experience, including our Margaritas.
+                                    La Playa Mexican Cafe was opened in July of 2006 in Harlingen Texas by the Trevino family. We enjoy bringing a bit of twist to the Harlingen community, differentiating from other Mexican restaurants with selecting ingredients to accent the traditional Mexican cuisine from interior Mexico for a flavorful experience, including our our award-winning margaritas and fajitas.
                                     We take pride in our Mexican heritage and want to share this rich history
                                     with you through warm meals and wonderful service.{" "}
                                     <span className="font-semibold">
