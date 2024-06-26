@@ -10,6 +10,7 @@ import { Container } from '@/components/Container'
 import bestBar from '@/images/logos/best-bar.svg'
 import bestFajitas from '@/images/logos/best-fajitas.svg'
 import bestHappyHour from '@/images/logos/best-happy-hour.svg'
+import bestStuff from '@/images/best-stuff.png'
 
 import {
     ActionIcon,
@@ -78,20 +79,23 @@ export function Hero() {
                     </div>
 
                     <div className="justify-start mt-10 sm:mt-0">
-                        <p className="text-lg font-semibold text-white text-left mx-auto mt-4 flex-wrap flex max-w-xl justify-start gap-x-10 gap-y-8 lg:mx-0">
+                        <p className="text-lg font-semibold text-white text-left">
                             Our Restaurant Is Award-Winning
                         </p>
                         <ul
                             role="list"
-                            className="mx-auto sm:mt-8 mt-4 flex-wrap sm:flex-nowrap flex max-w-xl justify-start gap-x-10 gap-y-8 lg:mx-0"
+                            className="flex items-center gap-x-10"
                         >
                             {[
                                 ['Best Bar and Lounge', bestBar],
-                                ['Best Fajitas', bestFajitas],
                                 ['Best Happy Hour', bestHappyHour],
+                                ['Best Fajitas', bestFajitas],
                             ].map(([name, logo, className]) => (
-                                <li key={name} className={clsx('flex', className)}>
-                                    <Image src={logo} alt={name} className="h-10" unoptimized />
+                                <li 
+                                    key={name} 
+                                    className={clsx('flex', className)}
+                                >
+                                    <Image src={logo} alt={name} />
                                 </li>
                             ))}
                         </ul>

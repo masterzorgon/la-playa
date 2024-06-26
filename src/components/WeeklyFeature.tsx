@@ -23,9 +23,9 @@ export function WeeklyFeature() {
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                             <span>Weekly Featured Dish</span>
                         </h2>
-                        <p className='mt-10 text-white text-2xl font-semibold'>Fajitas Alambre</p>
+                        <p className='mt-10 text-white text-2xl font-semibold'>Tacos Al Pastor</p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Our mouthwatering Fajitas packed with bell peppers, onions, and Monterrey cheese. This dish is served with rice and charro beans.
+                        Four tacos filled with grilled pork marinated in a guajillo and pineapple marinade , topped with chop onions and cilantro.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button

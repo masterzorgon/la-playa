@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import logo from '@/images/logos/Company Placeholder.svg'
+import logo from '@/images/logos/logo.png'
 
 export function Logomark(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (

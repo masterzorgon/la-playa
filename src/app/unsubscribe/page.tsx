@@ -13,7 +13,7 @@ import {
 
 export default async function Unsubscribe() {
     const [isSending, setIsSending] = useState<boolean>(false);
-
+    
     const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);

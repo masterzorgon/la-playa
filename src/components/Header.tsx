@@ -114,6 +114,9 @@ export function Header() {
                             <MobileNavLink href="/catering">
                               Catering & Reservations
                             </MobileNavLink>
+                            <MobileNavLink href="/private-events">
+                              Private Events
+                            </MobileNavLink>
                             <MobileNavLink href="/hours">
                               Hours & Location
                             </MobileNavLink>

@@ -11,6 +11,7 @@ export function NavLinks() {
   return [
     ['About Us', '/about-us'],
     ['Catering & Reservations', '/catering'],
+    ['Private Events', '/private-events'],
     ['Hours & Location', '/hours'],
   ].map(([label, href], index) => (
     <Link
