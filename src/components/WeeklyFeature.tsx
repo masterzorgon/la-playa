@@ -25,7 +25,7 @@ export function WeeklyFeature() {
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>Tacos Al Pastor</p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Four tacos filled with grilled pork marinated in a guajillo and pineapple marinade , topped with chop onions and cilantro.
+                        Four tacos filled with grilled pork marinated in a guajillo and pineapple marinade, topped with chop onions and cilantro.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
