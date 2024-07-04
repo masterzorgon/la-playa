@@ -23,9 +23,9 @@ export function WeeklyFeature() {
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                             <span>Weekly Featured Dish</span>
                         </h2>
-                        <p className='mt-10 text-white text-2xl font-semibold'>La PLaya Fajitas</p>
+                        <p className='mt-10 text-white text-2xl font-semibold'>La Playa Fajitas</p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Tender, marinaded, award-winning fajitas serve sizzling on top of a bed of grilled onions and chile toriado.
+                        Tender, marinaded, award-winning fajitas served sizzling on top of a bed of grilled onions and chile toriado.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button

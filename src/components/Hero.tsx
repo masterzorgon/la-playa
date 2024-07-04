@@ -84,7 +84,7 @@ export function Hero() {
                         </p>
                         <ul
                             role="list"
-                            className="flex items-center gap-x-10"
+                            className="-ml-1 mt-2 md:flex md:gap-x-10"
                         >
                             {[
                                 ['Best Bar and Lounge', bestBar],
@@ -93,7 +93,7 @@ export function Hero() {
                             ].map(([name, logo, className]) => (
                                 <li 
                                     key={name} 
-                                    className={clsx('flex', className)}
+                                    className={clsx('mb-4', className)}
                                 >
                                     <Image src={logo} alt={name} />
                                 </li>

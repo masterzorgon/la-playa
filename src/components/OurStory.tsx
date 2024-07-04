@@ -46,7 +46,7 @@ export function OurStory() {
                         <div className="hidden md:block flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
                             <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
                                 <Image
-                                    src={foodShowcase1}
+                                    src={teamPhoto}
                                     alt=""
                                     className="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover"
                                 />
@@ -61,7 +61,7 @@ export function OurStory() {
                                 </div>
                                 <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
                                     <Image
-                                        src={teamPhoto}
+                                        src={foodShowcase1}
                                         alt=""
                                         className="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
                                     />
