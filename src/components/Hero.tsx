@@ -64,11 +64,11 @@ export function Hero() {
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
-                                href="/menu"
+                                href="https://www.doordash.com/store/la-playa-mexican-cafe-harlingen-607767/"
                                 variant="solid"
                                 color="white"
                             >
-                                <span className="mr-1.5">View Menu</span>
+                                <span className="mr-1.5">Get Delivery</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
                             <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
