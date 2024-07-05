@@ -39,7 +39,7 @@ const cards = [
         details: [
             {
                 key: "Sunday & Monday",
-                value: "11AM - 9PM"
+                value: "9AM - 11PM"
             },
             {
                 key: "Tuesday - Thursday",
@@ -76,7 +76,11 @@ export default function Hours() {
                                     <ul className='text-gray-600 text-sm pt-2'>
                                         {card.details?.map(({ key, value }) => (
                                             <li key={key}>
-                                                <span className='font-semibold'>{key}</span>: {value}
+                                                <span className='font-semibold'>{key}</span>: {
+                                                    key.includes("Phone") 
+                                                        ? <a className="hover:text-gray-900" href="tel:+1 (956) 421-2000">{value}</a>
+                                                        : <span>{value}</span>
+                                                }
                                             </li>
                                         ))}
                                     </ul>

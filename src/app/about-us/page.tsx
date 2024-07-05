@@ -118,10 +118,10 @@ export default function AboutUs() {
                             </p>
                             <div className="mt-10 max-w-xl text-base leading-7 text-gray-700">
                                 <p>
-                                    Our goal is to provide dynamic menu, providing delicious high quality meals, great tasting items for reasonable price. This is demonstrated through receiving awards accolades on La Playa tender marinated fajitas and tasting, fresh, and potent margaritas.
+                                    Our goal is to provide dynamic menu, providing delicious high quality meals, great tasting items for reasonable price. This is demonstrated through receiving awards accolades on La Playa tender marinated fajitas and tasting, fresh and potent margaritas.
                                 </p>
                                 <p className="mt-10">
-                                    Additionally, La Playa offers menu selections outside of traditional dishes such as quail, providing noteworthy culinary delights to the local community. We are truly grateful to be a part of Harlingen community!
+                                    Additionally, La Playa offers menu selections outside of traditional dishes. Every week, we host different regional Mexican dishes, providing unique culinary delights to the local community. We are truly grateful to be a part of the Harlingen community!
                                 </p>
                                 <p className="mt-10">
                                     La Playa Mexican Cafe extends itself to the community by offering services with Dine-in, Curbside pickup, and DoorDash. As well as providing Catering that can be delivered and have a Private Room that can accommodate up to 75 people.

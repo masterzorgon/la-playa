@@ -1292,7 +1292,7 @@ const menu: Menu = {
             }
         },
         {
-            name: "Domested Draft Beer",
+            name: "Domestic Draft Beer",
             description: "",
             price: [
                 {
@@ -1307,11 +1307,11 @@ const menu: Menu = {
             specialty: false,
             image: {
                 src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy0VbwE0wZRf7hiE4WL1OlnKSN5pugxcsBpSnUQDlxaA&s",
-                alt: "Domested Draft Beer"
+                alt: "Domestic Draft Beer"
             }
         },
         {
-            name: "Domested Imported Beer",
+            name: "Domestic Imported Beer",
             description: "",
             price: [
                 {
@@ -1326,7 +1326,7 @@ const menu: Menu = {
             specialty: false,
             image: {
                 src: "https://media.istockphoto.com/id/183058917/photo/bar-beer-tap-with-african-american-persons-hand-filling-glass.jpg?s=612x612&w=0&k=20&c=HZHdOUZs96rFg-Y_z_WeXx0Tdo_DDp_Lj7cOSjILup4=",
-                alt: "Domested Imported Beer"
+                alt: "Domestic Imported Beer"
             }
         },
         {
