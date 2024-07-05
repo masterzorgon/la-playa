@@ -88,12 +88,12 @@ export function Hero() {
                         >
                             {[
                                 ['Best Bar and Lounge', bestBar],
-                                ['Best Happy Hour', bestHappyHour],
                                 ['Best Fajitas', bestFajitas],
+                                ['Best Happy Hour', bestHappyHour],
                             ].map(([name, logo, className]) => (
                                 <li 
                                     key={name} 
-                                    className={clsx('mb-4', className)}
+                                    className={clsx('mb-4 w-[180px]', className)}
                                 >
                                     <Image src={logo} alt={name} />
                                 </li>
