@@ -32,7 +32,7 @@ export function OurStory() {
 
                             <p className="mt-6 text-xl leading-8 text-gray-600">
                                 Started by the Trevino family, La Playa Mexican Cafe has been serving the Harlingen community
-                                since 2006. It brings us joy to bring poeple joy through our
+                                since 2006. It brings us joy to cook
                                 authentic dishes made with fresh ingredients that resonate with Mexican tradition.
                             </p>
                             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">

@@ -21,7 +21,7 @@ const cards = [
         details: [
             {
                 key: "Monday - Friday",
-                value: "3PM - 7PM"
+                value: "3PM - 6:30PM"
             },
             {
                 key: "Saturday",
@@ -39,7 +39,7 @@ const cards = [
         details: [
             {
                 key: "Sunday & Monday",
-                value: "9AM - 11PM"
+                value: "11AM - 9PM"
             },
             {
                 key: "Tuesday - Thursday",
