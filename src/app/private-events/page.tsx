@@ -163,9 +163,6 @@ export default function PrivateEvents() {
                             <p className="mt-6 text-lg leading-8 text-gray-600">
                                 Book a private event in the La Playa Private Events room. <span className='font-semibold'>To submit the form, you must fill out all required fields</span>.
                             </p>
-                            <p className="mt-6 text-lg leading-8 text-gray-600">
-                                Please note that our Private Events room has a <span className='font-semibold'>max capacity of 65 persons</span>.
-                            </p>
                             <dl className="mt-10 space-y-4 text-base leading-7 text-gray-600">
                                 <div className="flex gap-x-4">
                                     <dt className="flex-none">
