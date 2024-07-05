@@ -71,8 +71,8 @@ export function Hero() {
                                 <span className="mr-1.5">Get Delivery</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
-                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
-                                <span className="mr-1.5">Order Now</span>
+                            <Button variant="solid" color="cyan" href="/menu">
+                                <span className="mr-1.5">View Menu</span>
                                 <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
                             </Button>
                         </div>
