@@ -79,12 +79,12 @@ export function Hero() {
                     </div>
 
                     <div className="justify-start mt-10 sm:mt-0 w-full">
-                        <p className="text-lg font-semibold text-white text-left">
+                        <p className="text-lg font-semibold text-white text-left my-4">
                             Our Restaurant Is Award-Winning
                         </p>
                         <ul
                             role="list"
-                            className="-ml-1 mt-2 flex flex-wrap gap-x-10"
+                            className="-ml-1 flex flex-wrap gap-x-10"
                         >
                             {[
                                 ['Best Bar and Lounge', bestBar],
