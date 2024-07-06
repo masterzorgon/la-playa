@@ -1476,6 +1476,14 @@ const happyHourInfo = [
     { id: 3, name: 'Domestic Beer', description: "Bottle | Tall Draft | Pint", value: '$3 | $4 | $3' },
 ];
 
+const ScrollDownIcon = ({ className, props }: { className: string, props?: any }) => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className} {...props} >
+            <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+    );
+};
+
 export default function Menu() {
     const [category, setCategory] = useState<Category>(Category.Appetizers);
     const [categoryItems, setCategoryItems] = useState<MenuItem[]>(menu[Category.Appetizers]);
@@ -1511,18 +1519,22 @@ export default function Menu() {
                 </div>
 
                 <div className="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-16 lg:px-8">
-                    <div className="mx-auto max-w-2xl text-center grid grid-rows-3 gap-y-6">
+                    <div className="mx-auto max-w-2xl text-center grid grid-rows-3 gap-y-2 sm:gap-y-6">
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                             Our Award-Winning Menu
                         </h2>
                         <p className="text-gray-500">
-                            Explore our delicious and original recipes prepared with love just for you!<br/> <span className='font-semibold inline-flex items-center'>Starred menu items are specialty dishes <StarIcon className='text-cyan-600 ml-1 w-4' /></span>
+                            Explore our delicious and original recipes prepared with love just for you!<br /> <span className='font-semibold inline-flex items-center'>Starred menu items are specialty dishes <StarIcon className='text-cyan-600 ml-1 w-4' /></span>
                         </p>
                         <div>
                             <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
                                 <span className="mr-1.5">Order Now</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
+                        </div>
+                        <div className='block sm:hidden flex flex-col items-center justify-center gap-y-2 text-gray-500'>
+                            <ScrollDownIcon className="h-6 w-6 animate-bounce" />
+                            <span>Scroll to view menu</span>
                         </div>
                     </div>
                 </div>
@@ -1541,7 +1553,7 @@ export default function Menu() {
                         <div className='font-semibold text-center text-md sm:text-xl underline underline-offset-2'>
                             {category}
                         </div>
-                        
+
                         <HeadlessMenu as="div" className="relative inline-block flex justify-end">
                             <div className="flex">
                                 <HeadlessMenu.Button className="group inline-flex justify-center text-md font-medium text-gray-700 hover:text-gray-900">
@@ -1597,14 +1609,14 @@ export default function Menu() {
                             categoryItems.map(menuItem => (
                                 <div key={menuItem.name} className="relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
                                     <div className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none sm:h-80">
-                                        <img 
+                                        <img
                                             src={
                                                 (menuItem.image.alt.includes("Beer") || menuItem.image.alt.includes("Wine"))
                                                     ? menuItem.image.src
                                                     : `${URL_PREFIX}${menuItem.image.src}`
-                                            } 
-                                            alt={menuItem.image.alt} 
-                                            className="h-full w-full object-cover object-center" 
+                                            }
+                                            alt={menuItem.image.alt}
+                                            className="h-full w-full object-cover object-center"
                                         />
                                     </div>
                                     <div className="grid grid-rows-2 space-y-2 p-4 h-96">
