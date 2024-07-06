@@ -1535,17 +1535,17 @@ export default function Menu() {
                 className="grid items-center border-b border-t border-gray-200"
             >
                 <div className="col-start-1 row-start-1 py-4">
-                    <div className="mx-auto grid grid-cols-3 max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto grid grid-cols-3 max-w-7xl px-4 sm:px-6 lg:px-8 items-center">
                         <div />
 
-                        <div className='font-semibold text-center text-2xl'>
+                        <div className='font-semibold text-center text-md sm:text-xl underline underline-offset-2'>
                             {category}
                         </div>
                         
                         <HeadlessMenu as="div" className="relative inline-block flex justify-end">
                             <div className="flex">
-                                <HeadlessMenu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                                    Menu Categories
+                                <HeadlessMenu.Button className="group inline-flex justify-center text-md font-medium text-gray-700 hover:text-gray-900">
+                                    Categories
                                     <ChevronDownIcon
                                         className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                         aria-hidden="true"

@@ -93,7 +93,7 @@ export function Hero() {
                             ].map(([name, logo, className]) => (
                                 <li 
                                     key={name} 
-                                    className={clsx('mb-4 w-[180px]', className)}
+                                    className={clsx('mb-4', className)}
                                 >
                                     <Image src={logo} alt={name} />
                                 </li>
