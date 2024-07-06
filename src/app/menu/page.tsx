@@ -1510,7 +1510,7 @@ export default function Menu() {
                     <div className="absolute inset-0 bg-gradient-to-t from-white" />
                 </div>
 
-                <div className="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+                <div className="relative mx-auto -mt-12 max-w-7xl px-4 pb-16 sm:px-6 sm:pb-16 lg:px-8">
                     <div className="mx-auto max-w-2xl text-center grid grid-rows-3 gap-y-6">
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                             Our Award-Winning Menu
@@ -1538,12 +1538,14 @@ export default function Menu() {
                     <div className="mx-auto grid grid-cols-3 max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div />
 
-                        <div />
+                        <div className='font-semibold text-center text-2xl'>
+                            {category}
+                        </div>
                         
                         <HeadlessMenu as="div" className="relative inline-block flex justify-end">
                             <div className="flex">
                                 <HeadlessMenu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                                    {category}
+                                    Menu Categories
                                     <ChevronDownIcon
                                         className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                                         aria-hidden="true"
@@ -1567,7 +1569,7 @@ export default function Menu() {
                                                 {({ active }) => (
                                                     <button
                                                         className={clsx(
-                                                            compareType(option.type) ? 'font-medium text-gray-900' : 'text-gray-500',
+                                                            compareType(option.type) ? 'font-medium text-gray-900 bg-gray-100' : 'text-gray-500',
                                                             active ? 'bg-gray-100' : '',
                                                             'block px-4 py-2 text-sm w-full text-start'
                                                         )}
