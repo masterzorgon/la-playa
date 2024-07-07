@@ -1550,7 +1550,7 @@ export default function Menu() {
                     <div className="mx-auto grid grid-cols-3 max-w-7xl px-4 sm:px-6 lg:px-8 items-center">
                         <div />
 
-                        <div className='font-semibold text-center text-xl sm:text-2xl underline underline-offset-2'>
+                        <div className='font-semibold text-center text-xl sm:text-3xl underline underline-offset-2'>
                             {category}
                         </div>
 
