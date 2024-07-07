@@ -14,6 +14,7 @@ import bestStuff from '@/images/best-stuff.png'
 
 import {
     ActionIcon,
+    DoorDashIcon,
     OrderIcon
 } from '@/images/icons'
 
@@ -68,8 +69,9 @@ export function Hero() {
                                 variant="solid"
                                 color="white"
                             >
-                                <span className="mr-1.5">Get Delivery</span>
-                                <OrderIcon className="h-6 w-6 flex-none" />
+                                <span className="mr-1.5">DoorDash Delivery</span>
+                                {/* <OrderIcon className="h-6 w-6 flex-none" /> */}
+                                <DoorDashIcon className="w-6 h-6 flex-none" />
                             </Button>
                             <Button variant="solid" color="cyan" href="/menu">
                                 <span className="mr-1.5">View Menu</span>
