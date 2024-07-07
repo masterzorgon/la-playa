@@ -11,7 +11,10 @@ import { NavLinks } from '@/components/NavLinks'
 
 import {
   ActionIcon,
-  OrderIcon
+  FacebookIcon,
+  InstagramIcon,
+  OrderIcon,
+  TikTokIcon
 } from '@/images/icons'
 
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -126,11 +129,11 @@ export function Header() {
                               <span className="mr-1.5 text-white">View Menu</span>
                               <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
                             </Button>
-                            <Button 
-                              variant="solid" 
-                              color="white" 
-                              href="https://www.doordash.com/store/la-playa-mexican-cafe-harlingen-607767/" 
-                              target="_blank" 
+                            <Button
+                              variant="solid"
+                              color="white"
+                              href="https://www.doordash.com/store/la-playa-mexican-cafe-harlingen-607767/"
+                              target="_blank"
                               rel="noopener noreferrer"
                             >
                               <span className="mr-1.5">Order Now</span>
@@ -144,15 +147,26 @@ export function Header() {
                 </>
               )}
             </Popover>
-            <Button href="/menu" variant="outline" className="hidden lg:block border-black">
+            {/* <Button href="/menu" variant="outline" className="hidden lg:block border-black">
               <span className="text-white">View Menu</span>
-            </Button>
-            <Button 
-              variant="solid" 
-              color="white" 
-              href="https://www.doordash.com/store/la-playa-mexican-cafe-harlingen-607767/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            </Button> */}
+            <div className='hidden lg:flex items-center gap-x-2'>
+              <Link href="https://www.tiktok.com/@la.playa.mexican.cafe">
+                <TikTokIcon className='w-6 h-5 sm:h-6' />
+              </Link>
+              <Link href="https://www.facebook.com/LaPlayaMexicanCafe">
+                <FacebookIcon className='w-6 h-5 sm:h-6' />
+              </Link>
+              <Link href="https://www.instagram.com/LAPLAYAMEXICANCAFE">
+                <InstagramIcon className='w-6 h-5 sm:h-6' />
+              </Link>
+            </div>
+            <Button
+              variant="solid"
+              color="white"
+              href="https://www.doordash.com/store/la-playa-mexican-cafe-harlingen-607767/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden lg:block"
             >
               <span>Order Now</span>
