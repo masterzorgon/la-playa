@@ -1523,16 +1523,16 @@ export default function Menu() {
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                             Our Award-Winning Menu
                         </h2>
-                        <p className="text-gray-500">
-                            Explore our delicious and original recipes prepared with love just for you!<br /> <span className='font-semibold inline-flex items-center'>Starred menu items are specialty dishes <StarIcon className='text-cyan-600 ml-1 w-4' /></span>
+                        <p className="text-gray-500 text-balance">
+                            Explore our delicious and original recipes prepared with love just for you! <span className='font-semibold inline-flex items-center'>Starred menu items are specialty dishes <StarIcon className='text-cyan-600 ml-1 w-4' /></span>
                         </p>
-                        <div>
+                        <div className='hidden sm:block'>
                             <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
                                 <span className="mr-1.5">Order Now</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
                         </div>
-                        <div className='block sm:hidden flex flex-col items-center justify-center gap-y-2 text-gray-500'>
+                        <div className='block sm:hidden flex flex-col items-center justify-center gap-y-2 text-gray-500 -mt-4'>
                             <ScrollDownIcon className="h-6 w-6 animate-bounce" />
                             <span>Scroll to view menu</span>
                         </div>
@@ -1550,7 +1550,7 @@ export default function Menu() {
                     <div className="mx-auto grid grid-cols-3 max-w-7xl px-4 sm:px-6 lg:px-8 items-center">
                         <div />
 
-                        <div className='font-semibold text-center text-md sm:text-xl underline underline-offset-2'>
+                        <div className='font-semibold text-center text-xl sm:text-2xl underline underline-offset-2'>
                             {category}
                         </div>
 
