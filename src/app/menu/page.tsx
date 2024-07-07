@@ -1528,7 +1528,7 @@ export default function Menu() {
                         </p>
                         <div className='hidden sm:block'>
                             <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
-                                <span className="mr-1.5">Order Now</span>
+                                <span className="mr-1.5">Order Pickup</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
                         </div>

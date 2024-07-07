@@ -136,7 +136,7 @@ export function Header() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <span className="mr-1.5">Order Now</span>
+                              <span className="mr-1.5">Order Pickup</span>
                               <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
                           </div>
@@ -169,7 +169,7 @@ export function Header() {
               rel="noopener noreferrer"
               className="hidden lg:block"
             >
-              <span>Order Now</span>
+              <span>Order Pickup</span>
             </Button>
           </div>
         </Container>
