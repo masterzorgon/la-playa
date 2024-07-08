@@ -27,7 +27,7 @@ export function WeeklyFeature() {
                             Pollo en Molle
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Chicken thighs with out authentic, spicy homemade mole sauce, served with rice and charro beans.
+                            Chicken thighs with our authentic, spicy homemade mole sauce, served with rice and charro beans.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
