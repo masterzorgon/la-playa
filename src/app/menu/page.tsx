@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 import foodShowcase4 from '@/images/food-showcase4.jpg';
 import { Button } from '@/components/Button';
-import { OrderIcon } from '@/images/icons';
+import { ActionIcon, OrderIcon } from '@/images/icons';
 
 enum Category {
     Appetizers = "Appetizers",
@@ -1526,10 +1526,18 @@ export default function Menu() {
                         <p className="text-gray-500 text-balance">
                             Explore our delicious and original recipes prepared with love just for you! <span className='font-semibold inline-flex items-center'>Starred menu items are specialty dishes <StarIcon className='text-cyan-600 ml-1 w-4' /></span>
                         </p>
-                        <div className='hidden sm:block'>
-                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip" target="_blank" rel="noopener noreferrer">
-                                <span className="mr-1.5">Order Pickup</span>
+                        <div className="mt-4 hidden sm:flex flex-wrap mx-auto gap-x-4">
+                            <Button
+                                href="https://www.toasttab.com/la-playa-mexican-cafe-502-s-77-sunshine-strip/giftcards"
+                                variant="solid"
+                                color="gray"
+                            >
+                                <span className="mr-1.5">Buy Gift Cards</span>
                                 <OrderIcon className="h-6 w-6 flex-none" />
+                            </Button>
+                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip">
+                                <span className="mr-1.5">Order Pickup</span>
+                                <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
                             </Button>
                         </div>
                         <div className='block sm:hidden flex flex-col items-center justify-center gap-y-2 text-gray-500 -mt-4'>
