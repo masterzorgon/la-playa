@@ -24,10 +24,11 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Pollo en Molle
+                            La Cansta
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Chicken thighs with our authentic, spicy homemade mole sauce, served with rice and charro beans.
+                            Half an eggplant stuffed with fresh shrimp, crab meat and scallops lightly breaded and fried; topped with a spicy pico de gallo cream sauce. 
+                            Served on a bed of rice with charro beans, garnished with lettuce and pico de gallo.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
