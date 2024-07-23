@@ -24,11 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            La Cansta
+                            Special
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Half an eggplant stuffed with fresh shrimp, crab meat and scallops lightly breaded and fried; topped with a spicy pico de gallo cream sauce. 
-                            Served on a bed of rice with charro beans, garnished with lettuce and pico de gallo.
+                        Two Gorditas filled with ground beef or shredded chicken, lettuce, tomato and queso fresco served with charro beans and salsa diabla verde.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
