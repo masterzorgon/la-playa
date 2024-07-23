@@ -24,7 +24,7 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Special
+                            Gordita Plate
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
                         Two Gorditas filled with ground beef or shredded chicken, lettuce, tomato and queso fresco served with charro beans and salsa diabla verde.
