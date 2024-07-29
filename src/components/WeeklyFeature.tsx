@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Gordita Plate
+                            Fajitas ala Mexicana
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Two Gorditas filled with ground beef or shredded chicken, lettuce, tomato and queso fresco served with charro beans and salsa diabla verde.
+                            Tender, marinated, award-winning beef fajitas sautéed with our homemade pico de gallo and served with rice and charro beans. 
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
