@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Fajitas ala Mexicana
+                            Fajitas and Shrimp
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Tender, marinated, award-winning beef fajitas sautéed with our homemade pico de gallo and served with rice and charro beans. 
+                        Our award-winning beef and chicken fajitas cooked to perfection and served with four jumbo shrimp, rice and charro beans.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
