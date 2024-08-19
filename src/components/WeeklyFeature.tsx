@@ -24,11 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Cabo Tacos
+                            Camarones ala Diabla 
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Three fish tacos that are lightly breaded and fried, topped with red cabbage, tomatoes and cilantro. 
-                        Served with our homemade cilantro lime sauce, rice and charro beans 
+                            Six jumbo shrimp cooked with our spicy diabla sauce, served with rice, charro beans and toast.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
