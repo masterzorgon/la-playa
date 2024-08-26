@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Camarones ala Diabla 
+                            Asado de Puerco 
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Six jumbo shrimp cooked with our spicy diabla sauce, served with rice, charro beans and toast.
+                            Our authentic asado de puerco (pork) served with rice, beans and homemade tortillas.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
