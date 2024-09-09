@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Flautas Bandera
+                            Enchildas Rojas Mexicanas
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Three rolled corn tortillas filled with your choice of ground beef or shredded chicken, deep fried and topped with our tomatillo, sour cream and red salsa, served with rice and charro beans.
+                            Corn red tortillas deep on our home made asado sauce, filled up with Monterey jack cheese and chopped onions (onion optional), served with sautéed carrots and potatoes.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
