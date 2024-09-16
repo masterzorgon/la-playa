@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Enchildas Rojas Mexicanas
+                            Blackened Chicken Salad
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Corn red tortillas deep on our home made asado sauce, filled up with Monterey jack cheese and chopped onions (onion optional), served with sautéed carrots and potatoes.
+                            A fresh garden with ripe avocado slices, red cabbage, fresh tomatoes, white and yellow cheese. Topped with our perfect grilled blackened chicken breast!
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
