@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Tacos al Jardin
+                            Mexican Fried Steak
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Three corn tortilla tacos loaded with our award-winning fajita top with grill onion and cilantro served with salsa diabla rojax, rice and charro beans.
+                        Our award-winning fajita, light breaded and perfectly deep fried, topped with our beef gravy and our delicious chile con queso.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
