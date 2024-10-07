@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Mexican Fried Steak
+                            Pollo en Mole
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Our award-winning fajita, light breaded and perfectly deep fried, topped with our beef gravy and our delicious chile con queso.
+                            Chicken thighs with our authentic spicy homemade mole sauce, served with rice and charro beans.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
