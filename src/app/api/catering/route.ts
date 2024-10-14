@@ -32,8 +32,7 @@ export async function POST(request: NextRequest) {
         // send notification email to la playa
         const { data: notifData } = await resend.emails.send({
             from: "laplaya@laplayamexicancafe.com",
-            to: "elizabeth@laplayamexicancafe.com",
-            cc: "Laplayamain@gmail.com",
+            to: "Laplayamain@gmail.com",
             subject: "New Catering Request!",
             react: NotificationCateringRequest({
                 firstName,
