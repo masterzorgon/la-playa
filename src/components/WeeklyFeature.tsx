@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Chicken Chipotle
+                            Milanesa made with fajita skirt
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Our perfect grilled chicken fajita topped with our delicious chipotle sauce, served sizzling on a top of grilled onions.
+                            Milanesa made with fajita skirt! Lightly breaded and fried to perfection, served with salad, fries, chile toreado and arroz loco!
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
