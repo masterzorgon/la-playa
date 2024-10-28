@@ -24,10 +24,10 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                            Milanesa made with fajita skirt
+                        Tacos callejeros
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                            Milanesa made with fajita skirt! Lightly breaded and fried to perfection, served with salad, fries, chile toreado and arroz loco!
+                        Three street tacos: pork, beef and chicken fajitas, served with rice charro beans and salsa diabla.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
