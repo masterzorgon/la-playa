@@ -152,13 +152,13 @@ export function Header() {
             </Button> */}
             <div className='hidden lg:flex items-center gap-x-2'>
               <Link href="https://www.tiktok.com/@la.playa.mexican.cafe">
-                <TikTokIcon className='w-6 h-5 sm:h-6' />
+                <TikTokIcon className='w-6' />
               </Link>
               <Link href="https://www.facebook.com/LaPlayaMexicanCafe">
-                <FacebookIcon className='w-6 h-5 sm:h-6' />
+                <FacebookIcon className='w-7' />
               </Link>
               <Link href="https://www.instagram.com/LAPLAYAMEXICANCAFE">
-                <InstagramIcon className='w-6 h-5 sm:h-6' />
+                <InstagramIcon className='w-6' />
               </Link>
             </div>
             <Button
