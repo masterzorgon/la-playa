@@ -24,10 +24,11 @@ export function WeeklyFeature() {
                             <span>Weekly Featured Dish</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                        Fish Fillet a la Mexicana 
+                        Chicken Vallarta 
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Our fresh fish filet grilled and topped with our delicious house sauce, served with salad and rice.
+                        Two jumbo fried shrimp topped with ranchero sauce and cheese,
+                        Grilled chicken fajita served with rice and charro beans.
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
