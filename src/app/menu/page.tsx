@@ -11,14 +11,22 @@ import { Button } from '@/components/Button';
 import { ActionIcon, OrderIcon } from '@/images/icons';
 
 enum Category {
-    Appetizers = "Appetizers",
-    SoupsAndSalads = "Soups and Salads",
-    HouseFavorites = "House Favorites",
-    Desserts = "Desserts",
-    Lunch = "Lunch",
-    Entrees = "Entrees",
-    Drinks = "Drinks",
-    Kids = "Kids",
+    Drink = "drink",
+    Bar = "bar",
+    Dessert = "dessert",
+    Lunch = "lunch",
+    Kids = "kids",
+    Favorites = "favorites",
+    SoupsSalads = "soups-salads",
+    Appetizers = "appetizers",
+    SpecialtyFajitas = "specialty-fajitas",
+    Chicken = "chicken",
+    Seafood = "seafood",
+    Combos = "combos",
+    BotanasParrilladas = "botanas-parrilladas",
+    CarnesAlCarbon = "carnes-al-carbon",
+    Enchiladas = "enchiladas",
+    StreetTacos = "street-tacos",
 };
 
 enum MenuItemSize {
@@ -55,7 +63,6 @@ interface Menu {
     [category: string]: MenuItem[];
 };
 
-const URL_PREFIX = "https://drive.google.com/thumbnail?id="
 
 const menu: Menu = {
     "Appetizers": [
@@ -1486,23 +1493,50 @@ const ScrollDownIcon = ({ className, props }: { className: string, props?: any }
 
 export default function Menu() {
     const [category, setCategory] = useState<Category>(Category.Appetizers);
-    const [categoryItems, setCategoryItems] = useState<MenuItem[]>(menu[Category.Appetizers]);
+    const [menuItems, setMenuItems] = useState<any[]>([]);
 
     const categories = [
         { name: 'Appetizers', type: Category.Appetizers, action: () => setCategory(Category.Appetizers) },
-        { name: 'Soups and Salads', type: Category.SoupsAndSalads, action: () => setCategory(Category.SoupsAndSalads) },
-        { name: 'House Favorites', type: Category.HouseFavorites, action: () => setCategory(Category.HouseFavorites) },
-        { name: 'Desserts', type: Category.Desserts, action: () => setCategory(Category.Desserts) },
+        { name: 'Soups & Salads', type: Category.SoupsSalads, action: () => setCategory(Category.SoupsSalads) },
+        { name: 'House Favorites', type: Category.Favorites, action: () => setCategory(Category.Favorites) },
+        { name: 'Specialty Fajitas', type: Category.SpecialtyFajitas, action: () => setCategory(Category.SpecialtyFajitas) },
+        { name: 'Chicken', type: Category.Chicken, action: () => setCategory(Category.Chicken) },
+        { name: 'Seafood', type: Category.Seafood, action: () => setCategory(Category.Seafood) },
+        { name: 'Combos', type: Category.Combos, action: () => setCategory(Category.Combos) },
+        { name: 'Botanas & Parrilladas', type: Category.BotanasParrilladas, action: () => setCategory(Category.BotanasParrilladas) },
+        { name: 'Carnes Al Carbon', type: Category.CarnesAlCarbon, action: () => setCategory(Category.CarnesAlCarbon) },
+        { name: 'Enchiladas', type: Category.Enchiladas, action: () => setCategory(Category.Enchiladas) },
+        { name: 'Street Tacos', type: Category.StreetTacos, action: () => setCategory(Category.StreetTacos) },
+        { name: 'Desserts', type: Category.Dessert, action: () => setCategory(Category.Dessert) },
         { name: 'Lunch', type: Category.Lunch, action: () => setCategory(Category.Lunch) },
-        { name: 'Entrees', type: Category.Entrees, action: () => setCategory(Category.Entrees) },
-        { name: 'Drinks', type: Category.Drinks, action: () => setCategory(Category.Drinks) },
+        { name: 'Drinks', type: Category.Drink, action: () => setCategory(Category.Drink) },
+        { name: 'Bar', type: Category.Bar, action: () => setCategory(Category.Bar) },
         { name: 'Kids', type: Category.Kids, action: () => setCategory(Category.Kids) },
     ];
 
     const compareType = (type: Category) => category === type;
 
     useEffect(() => {
-        setCategoryItems(menu[category]);
+        const fetchMenu = async () => {
+            const url = "/api/menu";
+
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const result = await response.json();
+                setMenuItems(result.entry.items);
+                console.log("success", result);
+            } catch (error) {
+                console.error("Request failed:", error);
+            }
+        };
+
+        fetchMenu();
     }, [category]);
 
     return (
@@ -1533,11 +1567,17 @@ export default function Menu() {
                                 color="gray"
                             >
                                 <span className="mr-1.5">Buy Gift Cards</span>
-                                <OrderIcon className="h-6 w-6 flex-none" />
+                                <ActionIcon className="h-6 w-6 flex-none fill-white" />
                             </Button>
-                            <Button variant="solid" color="cyan" href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip">
+                            <Button
+                                variant="solid"
+                                color="cyan"
+                                href="https://order.toasttab.com/online/la-playa-mexican-cafe-502-s-77-sunshine-strip"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <span className="mr-1.5">Order Pickup</span>
-                                <ActionIcon className="h-6 w-6 flex-none fill-white text-white" />
+                                <OrderIcon className="h-6 w-6 flex-none" />
                             </Button>
                         </div>
                         <div className='block sm:hidden flex flex-col items-center justify-center gap-y-2 text-gray-500 -mt-4'>
@@ -1558,8 +1598,8 @@ export default function Menu() {
                     <div className="mx-auto grid grid-cols-3 max-w-7xl px-4 sm:px-6 lg:px-8 items-center">
                         <div />
 
-                        <div className='font-semibold text-center text-xl sm:text-3xl underline underline-offset-2'>
-                            {category}
+                        <div className='font-semibold text-center text-xl sm:text-2xl underline underline-offset-2'>
+                            {categories.filter(cat => cat.type === category)[0].name}
                         </div>
 
                         <HeadlessMenu as="div" className="relative inline-block flex justify-end">
@@ -1608,48 +1648,46 @@ export default function Menu() {
                 </div>
             </Disclosure>
 
-            {/* CONTENT */}
+            {/* MENU */}
             <div className="bg-white mt-8">
                 <div className="mx-auto max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24 lg:max-w-7xl lg:px-8">
-                    <h2 className="sr-only">Products</h2>
+                    <h2 className="sr-only">Menu Items</h2>
                     <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
                         {
-                            categoryItems.map(menuItem => (
-                                <div key={menuItem.name} className="relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
-                                    <div className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none sm:h-80">
-                                        <img
-                                            src={
-                                                (menuItem.image.alt.includes("Beer") || menuItem.image.alt.includes("Wine"))
-                                                    ? menuItem.image.src
-                                                    : `${URL_PREFIX}${menuItem.image.src}`
-                                            }
-                                            alt={menuItem.image.alt}
-                                            className="h-full w-full object-cover object-center"
-                                        />
-                                    </div>
-                                    <div className="grid grid-rows-2 space-y-2 p-4 h-96">
-                                        <div className=''>
-                                            <span className='flex items-center'>
-                                                <h3 className="text-lg font-medium text-gray-900">{menuItem.name}</h3>
-                                                {menuItem.specialty && <StarIcon className='text-cyan-600 ml-1 w-4' />}
-                                            </span>
-                                            <p className="text-sm text-gray-500">{menuItem.description}</p>
+                            menuItems.map((item: any) => {
+                                const menuItem = {
+                                    category: item.fields.category,
+                                    description: item.fields.description,
+                                    image: item.fields.image.fields.file.url,
+                                    name: item.fields.name,
+                                    price: item.fields.price,
+                                    specialty: item.fields.specialtyDish,
+                                };
+
+                                console.log("menu item", item);
+
+                                return (
+                                    menuItem.category === category &&
+                                    <div key={menuItem.name} className="relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white">
+                                        <div className="aspect-h-4 aspect-w-3 bg-gray-200 sm:aspect-none sm:h-60">
+                                            <img
+                                                src={menuItem.image}
+                                                alt={menuItem.name}
+                                                className="h-full w-full object-cover object-center"
+                                            />
                                         </div>
-                                        <div className="">
-                                            <div className='divide-x-2 divide-gray-300 '>
-                                                {menuItem.price?.map(item => (
-                                                    <p key={item.size} className="text-sm font-medium text-gray-700">{item.size}: ${item.price}</p>
-                                                ))}
-                                            </div>
-                                            <div className="mt-2 flex flex-col h-1/2">
-                                                {menuItem.additionals?.map(item => (
-                                                    <p key={item.description} className="text-sm font-medium text-gray-500">{item.description}: ${item.price}</p>
-                                                ))}
+                                        <div className="grid grid-rows-2 space-y-2 p-4 h-60">
+                                            <div className=''>
+                                                <span className='flex items-center'>
+                                                    <h3 className="text-lg font-medium text-gray-900">{menuItem.name}</h3>
+                                                    {menuItem.specialty && <StarIcon className='text-cyan-600 ml-1 w-4' />}
+                                                </span>
+                                                <p className="text-sm text-gray-500">{menuItem.description}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))
+                                );
+                            })
                         }
                     </div>
                 </div>
