@@ -63,7 +63,6 @@ interface Menu {
     [category: string]: MenuItem[];
 };
 
-
 const menu: Menu = {
     "Appetizers": [
         {
@@ -1663,8 +1662,6 @@ export default function Menu() {
                                     price: item.fields.price,
                                     specialty: item.fields.specialtyDish,
                                 };
-
-                                console.log("menu item", item);
 
                                 return (
                                     menuItem.category === category &&

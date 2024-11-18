@@ -1,34 +1,68 @@
-import Image from 'next/image'
+"use client";
+
+import { useState, useEffect } from 'react';
 
 import { Button } from '@/components/Button'
-import weeklyDish from "@/images/weekly-dish.jpg"
 
 import {
     ActionIcon,
     OrderIcon
 } from '@/images/icons'
 
+interface WeeklyFeature {
+    title: string;
+    subTitle: string;
+    description: string;
+    image: string;
+}
+
 export function WeeklyFeature() {
+    const [weeklyFeature, setWeeklyFeature] = useState<any>();
+
+    useEffect(() => {
+        const fetchWeeklyFeature = async () => {
+            const url = "/api/weekly-feature";
+
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                const result = await response.json();
+
+                setWeeklyFeature(result);
+                console.log("success", result);
+            } catch (error) {
+                console.error("Request failed:", error);
+            }
+        };
+
+        fetchWeeklyFeature();
+    }, []);
+
   return (
     <>
         <div className="relative isolate z-10 bg-cyan-800 md:py-32 pb-32">
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="mx-auto flex max-w-2xl flex-col gap-16 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
-                    <Image 
-                        src={weeklyDish}
+                    <img 
+                        src={weeklyFeature && weeklyFeature.entry.fields.image.fields.file.url}
                         className="h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm"
                         alt=""
                     />
                     <div className="h-96 w-full flex-auto">
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                            <span>Weekly Featured Dish</span>
+                            {/* <span>Weekly Featured Dish</span> */}
+                            <span>{weeklyFeature && weeklyFeature.entry.fields.title}</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
-                        Chicken Vallarta 
+                            {weeklyFeature && weeklyFeature.entry.fields.subTitle} 
                         </p>
                         <p className="mt-2 text-lg leading-8 text-gray-200">
-                        Two jumbo fried shrimp topped with ranchero sauce and cheese,
-                        Grilled chicken fajita served with rice and charro beans.
+                            {weeklyFeature && weeklyFeature.entry.fields.description} 
                         </p>
                         <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
                             <Button
