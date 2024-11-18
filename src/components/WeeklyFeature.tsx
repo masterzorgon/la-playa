@@ -55,7 +55,6 @@ export function WeeklyFeature() {
                     />
                     <div className="h-96 w-full flex-auto">
                         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                            {/* <span>Weekly Featured Dish</span> */}
                             <span>{weeklyFeature && weeklyFeature.entry.fields.title}</span>
                         </h2>
                         <p className='mt-10 text-white text-2xl font-semibold'>
