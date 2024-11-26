@@ -26,8 +26,10 @@ export function WeeklyFeature() {
             try {
                 const response = await fetch(url, {
                     method: 'GET',
+                    cache: 'no-store',  // or 'no-cache'
                     headers: {
                         'Content-Type': 'application/json',
+                        'Pragma': 'no-cache'
                     },
                 });
 

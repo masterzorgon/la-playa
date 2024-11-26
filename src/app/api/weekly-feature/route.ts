@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from 'contentful';
 
+export const dynamic = 'force-dynamic';  // Add this line
+
 export async function GET(request: NextRequest) {
     const client = createClient({
         space: "h1ksb8e9vuys",
